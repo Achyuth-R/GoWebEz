@@ -1,0 +1,33 @@
+#content {
+    display: none;
+  }
+
+  .innerbody {
+    overflow-y: scroll;
+    min-height: 200px;
+    max-height: 300px;
+    width: 200px;
+  
+  }
+
+
+  #notification-bell {
+    padding: 10px;
+
+  }
+
+  .notif-header {
+    font-size: large;
+  }
+
+  .button_badge {
+    background-color: #fa3e3e;
+    border-radius: 2px;
+    color: white;
+    padding: 1px 3px;
+    font-size: 100pt;
+    font-weight: 2000;
+    position: absolute;
+    top: 15;
+    right: 0;
+  }

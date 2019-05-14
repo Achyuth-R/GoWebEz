@@ -1,0 +1,77 @@
+@import 'media_query';
+body{
+   font-family: 'Poppins', sans-serif;
+   overflow: hidden;
+}
+/* ======================================================================= */
+/* ========================= accepteded section start ======================== */
+.acceptedBox {
+   border: 1px solid #dee2e6;
+   .acceptedBoxCheckAll {
+      width: 10px;
+   }
+   .accepted {
+      max-height: 500px;
+      overflow-y: scroll;
+   }
+   tbody{
+      font-size: 14px;
+
+      .acceptedsectionTdUl {
+         line-height: 8px;
+         padding: 3px !important;
+      }
+      .acceptedName{
+         .acceptedprofileImg{
+            width: 50px;
+            height:50px;
+            margin:0;
+            display: inline;
+            @include media-max-sm{   
+               display: block;            
+               margin: 0 auto!important;   
+            }         
+         }
+
+         p{
+            display: inline-block;
+            font-weight: bold;
+            line-height: 1;
+            white-space: nowrap;
+            @include media-max-sm{
+            text-align: center; 
+            }
+         }
+      }
+      .acceptedComment{
+         font-size: 14px;
+      }
+   }
+}
+.warning,.dark,.info
+{
+   width:120px;
+   text-align:center;
+   color:white;
+   font-weight:600;
+}
+.warning
+{
+   background:skyblue;
+}
+.dark
+{
+   background:orange;
+}
+.info
+{
+   background:green;
+}
+
+
+/* ========================= accepteded section end ======================== */
+/* ======================================================================= */
+
+
+
+

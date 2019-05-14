@@ -1,0 +1,82 @@
+@import 'media_query';
+body{
+   font-family: 'Poppins', sans-serif;
+   overflow: hidden;
+}
+/* ======================================================================= */
+/* ========================= Rejected section start ======================== */
+.rejectBox {
+   border: 1px solid #dee2e6;
+   .rejectBoxCheckAll {
+      width: 10px;
+   }
+   .rejectBoxName{
+      width:300px;
+   }
+   .reject {
+      max-height: 500px;
+      overflow-y: scroll;
+   }
+   tbody{
+      font-size: 14px;
+
+      .rejectsectionTdUl {
+         line-height: 8px;
+         padding: 3px !important;
+      }
+      .rejectName{
+         .rejectprofileImg{
+            width: 50px;
+            height:50px;
+            margin:0;
+            display: inline;
+            @include media-max-sm{   
+               display: block;            
+               margin: 0 auto!important;
+               
+            }
+         }
+         p{
+            display: inline-block;
+            font-weight: bold;
+            line-height: 1;
+            white-space: nowrap;
+            @include media-max-sm{
+              text-align: center; 
+            }
+         }
+      }
+      .rejectComment{
+         font-size: 14px;
+      }
+   }
+}
+.warning,.dark,.info
+{
+   width:120px;
+   
+   text-align:center;
+   color:white;
+   font-weight:600;
+}
+.warning
+{
+   background:skyblue;
+}
+.dark
+{
+   background:orange;
+}
+.info
+{
+   background:green;
+}
+
+
+
+/* ========================= Rejected section end ======================== */
+/* ======================================================================= */
+
+
+
+
