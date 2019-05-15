@@ -26,69 +26,6 @@ require_once 'includes/header-inc.php';
           </div>
           <input type="text" id="comment" class="form-control" aria-label="Comment" aria-describedby="basic-addon1">
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              <select class="custom-select custom-select-lg mb-3" id="startTime">
-                <option selected>Start time</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-              </select>
-            </div>
-            <div class="col-sm">
-              <select class="custom-select custom-select-lg mb-3" id="endTime">
-                <option selected>Start time</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" id="delete-trigger" data-dismiss="modal">Delete</button>
@@ -102,11 +39,8 @@ require_once 'includes/header-inc.php';
 <script>
   $("#schedule-trigger").click(function() {
     var title = $("#comment").val();
-    var startTime = $("#startTime").val();
-    var endTime = $("#endTime").val();
     var start = $('#comment').data('dataStart');
     var end = $('#comment').data('dataEnd');
-
     $.ajax({
       url: "insert.php",
       type: "POST",
@@ -114,12 +48,10 @@ require_once 'includes/header-inc.php';
         title: title,
         start: start,
         end: end,
-        startTime: startTime,
-        endTime: endTime
       },
       success: function() {
         $("#scheduleModal").modal("hide");
-        alert("Added Successfully");
+        // alert("Added Successfully");
         $("#calendar").fullCalendar('refetchEvents');
       }
     })
@@ -142,7 +74,6 @@ require_once 'includes/header-inc.php';
         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
         $('#comment').data('dataStart', start);
         $('#comment').data('dataEnd', end);
-        calendar.fullCalendar('refetchEvents');
       },
       editable: true,
       eventResize: function(event) {
@@ -159,9 +90,7 @@ require_once 'includes/header-inc.php';
             end: end,
             id: id
           },
-          success: function() {
-            alert('Event Update');
-          }
+          success: function() {}
         })
       },
 
@@ -181,7 +110,6 @@ require_once 'includes/header-inc.php';
           },
           success: function() {
             calendar.fullCalendar('refetchEvents');
-            alert("Event Updated");
           }
         });
       },
@@ -207,7 +135,6 @@ require_once 'includes/header-inc.php';
       success: function() {
         $("#calendar").fullCalendar('refetchEvents');
         $("#scheduleModal").modal("hide");
-        alert("Event Removed");
       }
     })
   });
