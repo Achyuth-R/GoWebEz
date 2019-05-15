@@ -36,7 +36,8 @@ require_once 'includes/header-inc.php';
         url:"insert.php",
         type:"POST",
         data:{title:title, start:start, end:end},
-        success:function()
+      dev-calendar
+        success:function
         {
          calendar.fullCalendar('refetchEvents');
          alert("Added Successfully");
