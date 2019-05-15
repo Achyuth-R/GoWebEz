@@ -15,7 +15,7 @@ if (isset($_POST["id"])) {
             ':title'  => $_POST['title'],
             ':start_date' => $_POST['start'],
             ':end_date' => $_POST['end'],
-            ':id'   => $_POST['id']
+            ':id' => $_POST['id']
         )
     );
 }
