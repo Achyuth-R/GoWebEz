@@ -1,8 +1,8 @@
 <?php
 require_once 'init.php';
 require_once 'includes/header-inc.php';
-
 ?>
+
 <h2 align="center"><a href="#"></a></h2>
 <br />
 <div class="container" style="overflow:scroll;width:80%;
@@ -35,7 +35,6 @@ require_once 'includes/header-inc.php';
   </div>
 </div>
 
-
 <script>
   $("#schedule-trigger").click(function() {
     var title = $("#comment").val();
@@ -57,7 +56,6 @@ require_once 'includes/header-inc.php';
     })
   });
 
-
   $(document).ready(function() {
     var calendar = $('#calendar').fullCalendar({
       editable: true,
@@ -72,12 +70,10 @@ require_once 'includes/header-inc.php';
       duration: {
         default: '01.00'
       },
-      select: function(start, end, allDay) {
+      select: function(start) {
         $("#scheduleModal").modal("show");
         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
         $('#comment').data('dataStart', start);
-        $('#comment').data('dataEnd', end);
       },
       editable: true,
       eventResize: function(event) {
@@ -100,7 +96,6 @@ require_once 'includes/header-inc.php';
 
       eventDrop: function(event) {
         var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
         var title = event.title;
         var id = event.id;
         $.ajax({
@@ -121,7 +116,6 @@ require_once 'includes/header-inc.php';
       eventClick: function(event) {
         $("#scheduleModal").modal("show");
         var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
         var id = event.id;
         $('#comment').data('dataID', id);
       },

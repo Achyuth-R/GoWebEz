@@ -4,7 +4,7 @@ require_once 'init.php';
 
 $title  = $_POST["title"];
 $start = $_POST["start"];
-$end = $_POST["end"];
+// $end = $_POST["end"];
 
 
 if (isset($title)) {
@@ -18,7 +18,8 @@ if (isset($title)) {
         array(
             ':title'  => $title,
             ':start_date' => $start,
-            ':end_date' => $end
+            ':end_date' => $start
         )
     );
 }
+?>
