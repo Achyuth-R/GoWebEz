@@ -57,6 +57,7 @@ require_once 'includes/header-inc.php';
     })
   });
 
+
   $(document).ready(function() {
     var calendar = $('#calendar').fullCalendar({
       editable: true,
@@ -68,6 +69,9 @@ require_once 'includes/header-inc.php';
       events: 'load.php',
       selectable: true,
       selectHelper: true,
+      duration: {
+        default: '01.00'
+      },
       select: function(start, end, allDay) {
         $("#scheduleModal").modal("show");
         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
