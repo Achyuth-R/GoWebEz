@@ -104,13 +104,12 @@ require_once 'includes/header-inc.php';
           data: {
             title: title,
             start: start,
-            end: end,
             id: id
           },
           success: function() {
             calendar.fullCalendar('refetchEvents');
           }
-        });
+        })
       },
 
       eventClick: function(event) {
