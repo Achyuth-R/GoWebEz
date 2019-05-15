@@ -91,7 +91,7 @@ require_once 'includes/header-inc.php';
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" id="delete-trigger" data-dismiss="modal">Delete</button>
         <button type="button" id="schedule-trigger" class="btn btn-primary">Save changes</button>
       </div>
     </div>
@@ -100,30 +100,31 @@ require_once 'includes/header-inc.php';
 
 
 <script>
-  $("#schedule-trigger").click(function(){
-          var title = $("#comment").val();
-          var startTime = $("#startTime").val();
-          var endTime = $("#endTime").val();
-          var start = $('#comment').data('dataStart'); 
-          var end = $('#comment').data('dataEnd'); 
+  $("#schedule-trigger").click(function() {
+    var title = $("#comment").val();
+    var startTime = $("#startTime").val();
+    var endTime = $("#endTime").val();
+    var start = $('#comment').data('dataStart');
+    var end = $('#comment').data('dataEnd');
 
-          $.ajax({
-          url: "insert.php",
-          type: "POST",
-          data: {
-            title: title,
-            start: start,
-            end: end,
-            startTime: startTime,
-            endTime: endTime
-          },
-          success: function() {
-            $("#scheduleModal").modal("hide");
-            alert("Added Successfully");            
-            $("#calendar").fullCalendar('refetchEvents');
-          }
-        })
-  })
+    $.ajax({
+      url: "insert.php",
+      type: "POST",
+      data: {
+        title: title,
+        start: start,
+        end: end,
+        startTime: startTime,
+        endTime: endTime
+      },
+      success: function() {
+        $("#scheduleModal").modal("hide");
+        alert("Added Successfully");
+        $("#calendar").fullCalendar('refetchEvents');
+      }
+    })
+  });
+
   $(document).ready(function() {
     var calendar = $('#calendar').fullCalendar({
       editable: true,
@@ -137,11 +138,11 @@ require_once 'includes/header-inc.php';
       selectHelper: true,
       select: function(start, end, allDay) {
         $("#scheduleModal").modal("show");
-          var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-          var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-          $('#comment').data('dataStart',start); 
-          $('#comment').data('dataEnd',end); 
-          calendar.fullCalendar('refetchEvents');
+        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+        $('#comment').data('dataStart', start);
+        $('#comment').data('dataEnd', end);
+        calendar.fullCalendar('refetchEvents');
       },
       editable: true,
       eventResize: function(event) {
@@ -186,22 +187,28 @@ require_once 'includes/header-inc.php';
       },
 
       eventClick: function(event) {
-        if (confirm("Are you sure you want to remove it?")) {
-          var id = event.id;
-          $.ajax({
-            url: "delete.php",
-            type: "POST",
-            data: {
-              id: id
-            },
-            success: function() {
-              calendar.fullCalendar('refetchEvents');
-              alert("Event Removed");
-            }
-          })
-        }
+        $("#scheduleModal").modal("show");
+        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+        var id = event.id;
+        $('#comment').data('dataID', id);
       },
-
     });
+  });
+
+  $("#delete-trigger").click(function() {
+    var id = $("#comment").data("dataID");
+    $.ajax({
+      url: "delete.php",
+      type: "POST",
+      data: {
+        id: id
+      },
+      success: function() {
+        $("#calendar").fullCalendar('refetchEvents');
+        $("#scheduleModal").modal("hide");
+        alert("Event Removed");
+      }
+    })
   });
 </script>
