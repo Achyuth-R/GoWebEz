@@ -51,8 +51,8 @@ require_once 'includes/header-inc.php';
       },
       success: function() {
         $("#scheduleModal").modal("hide");
-        // alert("Added Successfully");
         $("#calendar").fullCalendar('refetchEvents');
+        toastr.error("Event created!");
       }
     })
   });
