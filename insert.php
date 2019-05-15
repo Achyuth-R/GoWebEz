@@ -21,5 +21,4 @@ if(isset($title))
   )
  );
 }
-
 ?>

@@ -100,6 +100,30 @@ require_once 'includes/header-inc.php';
 
 
 <script>
+  $("#schedule-trigger").click(function(){
+          var title = $("#comment").val();
+          var startTime = $("#startTime").val();
+          var endTime = $("#endTime").val();
+          var start = $('#comment').data('dataStart'); 
+          var end = $('#comment').data('dataEnd'); 
+
+          $.ajax({
+          url: "insert.php",
+          type: "POST",
+          data: {
+            title: title,
+            start: start,
+            end: end,
+            startTime: startTime,
+            endTime: endTime
+          },
+          success: function() {
+            $("#scheduleModal").modal("hide");
+            alert("Added Successfully");            
+            $("#calendar").fullCalendar('refetchEvents');
+          }
+        })
+  })
   $(document).ready(function() {
     var calendar = $('#calendar').fullCalendar({
       editable: true,
@@ -113,32 +137,11 @@ require_once 'includes/header-inc.php';
       selectHelper: true,
       select: function(start, end, allDay) {
         $("#scheduleModal").modal("show");
-
-
-        var title = $("#comment").val();
-        var startTime = $("#startTime").val();
-        var endTime = $("#endTime").val();
-
-        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-
-        $.ajax({
-          url: "insert.php",
-          type: "POST",
-          data: {
-            title: title,
-            start: start,
-            end: end,
-            startTime: startTime,
-            endTime: endTime
-          },
-          success: function(data) {
-            calendar.fullCalendar('refetchEvents');
-            $("#schedule-trigger").toggleClass("clickeds");
-            $("#scheduleModal").modal("hide");
-            alert("Added Successfully");
-          }
-        })
+          var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+          var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+          $('#comment').data('dataStart',start); 
+          $('#comment').data('dataEnd',end); 
+          calendar.fullCalendar('refetchEvents');
       },
       editable: true,
       eventResize: function(event) {
@@ -156,7 +159,6 @@ require_once 'includes/header-inc.php';
             id: id
           },
           success: function() {
-            calendar.fullCalendar('refetchEvents');
             alert('Event Update');
           }
         })
