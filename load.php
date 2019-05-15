@@ -5,7 +5,7 @@ $data = array();
 
 $query = "SELECT * FROM events ORDER BY id";
 
-$statement = $connect->prepare($query);
+$statement = $db->prepare($query);
 
 $statement->execute();
 
