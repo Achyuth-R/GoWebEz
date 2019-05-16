@@ -177,7 +177,6 @@ $(function() {
 });
 
 function chatsFetch() {
-  console.log("d");
   $.ajax({
     url: "getChats.php",
     cache: "false",
@@ -189,7 +188,6 @@ function chatsFetch() {
       if (count == 0) {
         ch.innerHTML = "No new interview sessions";
       }
-      console.log(json);
       for (var i = 0; i < count; i++) {
         var title = document.createElement("div");
         var time = document.createElement("div");
@@ -282,7 +280,7 @@ $(document).ready(function() {
       },
 
       success: function(data) {
-        return data;
+        console.log(data);
       }
     });
   });

@@ -3,7 +3,6 @@ require_once 'includes/dbh.inc.php';
 ?>
 
 <?php
-//send_mail.php
 if (isset($_POST['email_data'])) {
     $value = $_POST['email_data'];
 
@@ -22,5 +21,4 @@ if (isset($_POST['email_data'])) {
         }
     }
 }
-
 ?>
