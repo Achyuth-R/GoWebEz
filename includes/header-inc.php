@@ -76,7 +76,7 @@
          <?php
         }
         ?>
-         <li class="mr-3 "><a id="chat" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left">
+         <li class="mr-3 "><a id="chat" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom">
              <span class="fa-xs fa-stack"><i style="color: #003170" class="fas fa-xs fa-comment fa-stack-2x"></i><span id="chatCount" class="fa-stack-1x fa-sm fa-inverse"></span></span>
            </a></li>
 
@@ -100,11 +100,20 @@
        </ul>
      </nav>
 
-     <div id="content">
+     <div id="notification-content">
        <p class="text-danger text-center notif-header">New Applicants</p>
        <div class="dropdown-divider"></div>
        <div class="innerbody">
          <div id="applicants">
+         </div>
+       </div>
+     </div>
+
+     <div id="chat-content">
+       <p class="text-danger text-center notif-header">Interview Schedule</p>
+       <div class="dropdown-divider"></div>
+       <div class="innerbody">
+         <div id="chats">
          </div>
        </div>
      </div>

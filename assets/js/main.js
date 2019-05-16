@@ -83,16 +83,16 @@ $(document).ready(function() {
   // Pass Candidate id
   //=======================================
 });
-
-var ops = {
+//===================================================================================
+var notification_ops = {
   html: true,
   content: function() {
-    return $("#content").html();
+    return $("#notification-content").html();
   }
 };
 
 $(function() {
-  $("#notification-bell").popover(ops);
+  $("#notification-bell").popover(notification_ops);
 });
 
 function notifications() {
@@ -149,9 +149,10 @@ $("#notification-bell").click(function() {
     }
   });
 });
+//===================================================================================
 
-// logout popup
-var op = {
+// Logout AJAX and Popover
+var profile_ops = {
   html: true,
   content: function() {
     return $("#profile-content").html();
@@ -159,8 +160,22 @@ var op = {
 };
 
 $(function() {
-  $("#profile").popover(op);
+  $("#profile").popover(profile_ops);
 });
+//===================================================================================
+
+// Chat AJAX and popover
+var chat_ops = {
+  html: true,
+  content: function() {
+    return $("#chat-content").html();
+  }
+};
+
+$(function() {
+  $("#chat").popover(chat_ops);
+});
+//===================================================================================
 
 // SEARCH BOX
 
@@ -191,46 +206,49 @@ $(document).ready(function() {
     });
   }
 });
+//===================================================================================
 
-// SEARCH BOX END
-
-// Accepted candiadate
+// Accepted candidate Mailing AJAX
 
 $(document).ready(function() {
   $(".email_button").click(function() {
     $(this).attr("disabled", "disabled");
+    $(this).css("opacity", ".1");
     var id = $(this).attr("id");
     // alert(id);
     var action = $(this).data("action");
     // alert(action);
-    var email = $(this).data("email");
+    // var  email=$(this).data("email");op
     // alert(email);
-    // var email_data = [];
-    //    email_data.push({
-    //      email: $(this).data("email")
-    // });
+    var email_data = [];
+
+    if (action == "email_single") {
+      email_data.push({
+        email: $(this).data("email")
+      });
+    } else {
+      $(".checkbox-child").each(function() {
+        var ischecked = $(this).is(":checked");
+        if ($(this).is(":checked")) {
+          // alert('hiiii');
+          email_data.push({
+            email: $(this).data("email")
+          });
+        }
+      });
+    }
+
     $.ajax({
       url: "send_mail.php",
       method: "POST",
       data: {
-        email: email
+        email_data: email_data
       },
 
-      beforeSend: function() {
-        $("#" + id).html("Sending...");
-        $("#" + id).addClass("btn-danger");
-      },
       success: function(data) {
-        if ((data = "ok")) {
-          $("#" + id).text("Success");
-          $("#" + id).removeClass("btn-danger");
-          $("#" + id).removeClass("btn-info");
-          $("#" + id).addClass("btn-success");
-        } else {
-          $("#" + id).text(data);
-        }
-        $("#" + id).attr("disabled", false);
+        return data;
       }
     });
   });
 });
+//===================================================================================
