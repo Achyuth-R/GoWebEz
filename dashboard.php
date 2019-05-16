@@ -1,42 +1,13 @@
 <?php
 require_once 'init.php';
 require_once 'includes/header-inc.php';
-?>
-
-<!-- candidate List -->
-<!-- =============================== -->
-<!-- 
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="dashbord_box pt-4 text-success">
-        <h4 align="center">ACCEPTED</h4>
-        
-      </div>
-      
-    </div>
-     <div class="col-md-4">
-      <div class="dashbord_box pt-4 text-danger">
-           <h4 align="center">REJECTED</h4>
-
-        
-      </div>
-      
-    </div>
-     <div class="col-md-4">
-      <div class="dashbord_box pt-4 text-info">
-           <h4 align="center">SELECTED</h4>
-
-        
-      </div>
-      
-    </div>
-  </div>
-</div>
-<br><br> -->
+?>  
 <div id="result">
   
 </div>
+<?php 
+if ($_SESSION['position'] == 'admin') {
+?>
       <section class="tableSection container">
          <div class="table-responsive">
             <table class="table  tableSectionBox table-striped table-hover">
@@ -145,7 +116,7 @@ require_once 'includes/header-inc.php';
 <script>
 
   
-
+  .
 
    $(document).ready(function()
    {
@@ -183,6 +154,13 @@ require_once 'includes/header-inc.php';
   });
 
 </script>
+<?php
+}
+else {
+  echo "<h1> you are an interviewer, please check interview schedule for updates</h1>";
+}
+
+?>
 <?php
 // require_once 'includes/footer.inc.php';
 ?>
