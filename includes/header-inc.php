@@ -67,10 +67,15 @@
          <li>
            <input type="text" name="" placeholder="search" class="search_filter">
            <i class="fa fa-search" id="search_button" aria-hidden="true" style="margin-left:-40px;font-size:25px;"></i></li>
-
+           <?php 
+              if ($_SESSION['position'] == 'admin') {
+              ?>
          <li class="mr-3 "><a id="notification-bell" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left">
              <span class="fa-xs fa-stack"><i class="fas fa-xs fa-bell fa-stack-2x"></i><span id="count" class="fa-stack-1x fa-sm fa-inverse"></span></span>
            </a></li>
+           <?php
+              }
+              ?>
 
          <li class="mr-3">
            <div class="profile  d-flex justify-content-center" id="profile" data-container="body" data-toggle="popover" data-placement="bottom" height="50px"><span class="align-self-center">
