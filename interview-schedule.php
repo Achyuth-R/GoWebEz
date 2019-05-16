@@ -51,7 +51,7 @@ require_once 'includes/header-inc.php';
       success: function() {
         $("#scheduleModal").modal("hide");
         $("#calendar").fullCalendar('refetchEvents');
-        toastr.error("Event created!");
+        toastr.success("Event created!");
       }
     })
   });
@@ -90,7 +90,10 @@ require_once 'includes/header-inc.php';
             end: end,
             id: id
           },
-          success: function() {}
+          success: function() {
+            calendar.fullCalendar('refetchEvents');
+            toastr.info("Event upadted!");
+          }
         })
       },
 
@@ -108,6 +111,7 @@ require_once 'includes/header-inc.php';
           },
           success: function() {
             calendar.fullCalendar('refetchEvents');
+            toastr.info("Event upadted!");
           }
         })
       },
@@ -131,6 +135,7 @@ require_once 'includes/header-inc.php';
       },
       success: function() {
         $("#calendar").fullCalendar('refetchEvents');
+        toastr.error("Event deleted!");
         $("#scheduleModal").modal("hide");
       }
     })
