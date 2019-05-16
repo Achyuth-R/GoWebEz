@@ -51,6 +51,7 @@ if (!empty($_POST["remember_me"]))
 			$row = $result->fetch(PDO::FETCH_OBJ);
 			$_SESSION['username']=$row->username;
 			$_SESSION['user_id']=$row->id;
+			$_SESSION['position']=$row->position;
 			header('Location:dashboard.php');
 			}
         else

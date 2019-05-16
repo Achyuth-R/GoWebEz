@@ -1,33 +1,42 @@
-#content {
-    display: none;
-  }
+#notification-content {
+  display: none;
+}
 
-  .innerbody {
-    overflow-y: scroll;
-    min-height: 200px;
-    max-height: 300px;
-    width: 200px;
-  
-  }
+#profile-content {
+  display: none;
+}
 
+#chat-content {
+  display: none;
+}
 
-  #notification-bell {
-    padding: 10px;
+#profile {
+  text-transform: uppercase;
+}
 
-  }
+.innerbody {
+  overflow-y: scroll;
+  min-height: 200px;
+  max-height: 300px;
+  width: 200px;
+}
 
-  .notif-header {
-    font-size: large;
-  }
+#notification-bell {
+  padding: 10px;
+}
 
-  .button_badge {
-    background-color: #fa3e3e;
-    border-radius: 2px;
-    color: white;
-    padding: 1px 3px;
-    font-size: 100pt;
-    font-weight: 2000;
-    position: absolute;
-    top: 15;
-    right: 0;
-  }
+.notif-header {
+  font-size: large;
+}
+
+.button_badge {
+  background-color: #fa3e3e;
+  border-radius: 2px;
+  color: white;
+  padding: 1px 3px;
+  font-size: 100pt;
+  font-weight: 2000;
+  position: absolute;
+  top: 15;
+  right: 0;
+}
