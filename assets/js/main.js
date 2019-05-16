@@ -175,6 +175,42 @@ var chat_ops = {
 $(function() {
   $("#chat").popover(chat_ops);
 });
+
+function chatsFetch() {
+  console.log("d");
+  $.ajax({
+    url: "getChats.php",
+    cache: "false",
+    success: function(json) {
+      var count = json.unreadcount;
+      document.getElementById("chatCount").innerHTML = count;
+      var ch = document.getElementById("chats");
+      $("#chats").empty();
+      if (count == 0) {
+        ch.innerHTML = "No new interview sessions";
+      }
+      console.log(json);
+      for (var i = 0; i < count; i++) {
+        var title = document.createElement("div");
+        var time = document.createElement("div");
+        var divider = document.createElement("div");
+        divider.className = "dropdown-divider";
+        title.className = "text-secondary";
+        time.className = "text-primary";
+        title.innerHTML = json.chats[i].title;
+        time.innerHTML = json.chats[i].start_date.substring(0, 10);
+        var chatDiv = document.createElement("div");
+        chatDiv.appendChild(time);
+        chatDiv.appendChild(title);
+        chatDiv.appendChild(divider);
+        ch.appendChild(chatDiv);
+      }
+    }
+  });
+}
+
+setInterval(chatsFetch, 1000);
+
 //===================================================================================
 
 // SEARCH BOX

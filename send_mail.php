@@ -12,7 +12,7 @@ if (isset($_POST['email_data'])) {
         $email_to = implode(',', $key);
         $subject = 'Testing PHP Mail';
         $message = 'This mail is sent using the PHP mail function';
-        $headers = 'From:qa0035sakthi@gmail.com';
+        $headers = 'From:aravindansridhars@gmail.com';
         $retval = mail($email_to, $subject, $message, $headers);
 
         if ($retval == true) {
