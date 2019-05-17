@@ -90,11 +90,12 @@ require_once 'includes/header-inc.php';
         default: '01.00'
       },
       select: function(start) {
+        $('#comment').val('');
         $("#scheduleModal").modal("show");
         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
         $('#comment').data('dataStart', start);
-        // $('#comment').removeData('dataID');
-        // $('#comment').removeData('dataEnd');
+        $('#comment').removeData('dataID');
+        $('#comment').removeData('dataEnd');
       },
       editable: true,
       eventResize: function(event) {

@@ -5,7 +5,6 @@ $id = $_POST['id'];
 $select_candidate_list = "SELECT * FROM registered_user WHERE id=$id";
 $select_candidate_list = $db->query($select_candidate_list);
 $rows = $select_candidate_list->fetch(PDO::FETCH_OBJ);
-// print_r($rows)
 
 if ($rows->fresher_or_experienced == "Fresher") {
    $color = "warning";
@@ -25,7 +24,6 @@ if ($rows->fresher_or_experienced == "Fresher") {
       <div class="col-md-4 bordered pt-3">
          <div class="profileDetails">
             <div class="profileDetailsImage text-center">
-               <!-- <div class="roll"><i class="fas fa-tag"></i><span>F</span></div> -->
                <img class="img-fluid" src="assets/images/img1.jpg">
                <h6 class="font-weight-bold pt-3"><?php echo $rows->name; ?></h6>
 
@@ -62,8 +60,6 @@ if ($rows->fresher_or_experienced == "Fresher") {
             <div id="statusFlags" class="selection text-center py-1" data-status=<?php echo $rows->del_flag ?>>
                <button id="acceptButton" class="btn btn-outline-success mr-3 text-md-center" name="b1" data-id="<?php echo $rows->id ?>"> Accept</button>
                <button id="rejectButton" class="btn btn-outline-danger" name="b1" data-toggle="modal" data-target="#rejectModal" data-id="<?php echo $rows->id ?>"> Reject</button>
-               <!-- <img class="accept" src="assets/images/1.png">
-               <img class="reject" src="assets/images/2.png"> -->
             </div>
          </div>
       </div>
@@ -193,4 +189,4 @@ if ($rows->fresher_or_experienced == "Fresher") {
 
 
 <!-- ============================ profile details end ============================== -->
-<!-- =========================================================================== -->
+<!-- =============================================================================== -->
