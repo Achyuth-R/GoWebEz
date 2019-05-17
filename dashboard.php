@@ -11,7 +11,7 @@ if ($_SESSION['position'] == 'admin') {
    <section class="tableSection container">
       <div class="table-responsive">
          <table class="table  tableSectionBox table-hover">
-            <thead class="text-left">
+            <thead class="text-left default-cursor">
                <tr>
                   <th class="text-muted tableSectionBoxCheckAll">
                      <input class="m-2 checkall" type="checkbox" id="checkall">
@@ -19,7 +19,7 @@ if ($_SESSION['position'] == 'admin') {
                   <th class="text-muted">
                      <span><i class="fa fa-user-o ml-2 mr-2" aria-hidden="true"></i> Name</span>
                   </th>
-                  <th class="text-muted"><i class="fa fa-pen-o mr-1" aria-hidden="true"></i>Designations</th>
+                  <th class="text-muted"><i class="fa fa-pen-o mr-1" aria-hidden="true"></i>Designation</th>
                   <th class="text-muted"><i class="fa fa-envelope-o mr-1" aria-hidden="true"></i> E-mail</th>
                   <th class="text-muted"><i class="fa fa-calendar mr-1" aria-hidden="true"></i> Date</th>
                   <th class="text-muted"><i class="fa fa-line-chart mr-1" aria-hidden="true"></i> Status</th>
@@ -57,16 +57,16 @@ if ($_SESSION['position'] == 'admin') {
                      <td class="align-middle">
 
                         <img class="rounded-circle img-fluid mr-3 tableprofileImg float-left" src="assets/images/img1.jpg">
-                        <p class="align-middle text-xm-center"><?php echo $rows->name ?><span class="text-primary font-weight-bold">
+                        <p class="align-middle text-xm-center"><?php echo $rows->name ?><span class="text-primary default-cursor font-weight-bold">
                               <br>( <?php echo $rows->qualification ?> )</span>
                         </p>
                      </td>
                      <td class="align-middle">
-                        <div class="<?php echo $color ?> btn-sm"><?php echo $rows->fresher_or_experienced; ?></div>
+                        <div class="<?php echo $color ?> default-cursor btn-sm"><?php echo $rows->fresher_or_experienced; ?></div>
                      </td>
                      <td class="tableSectionEmail  align-middle"><?php echo $rows->email ?></td>
                      <td class="align-middle">11/12/2014</td>
-                     <td class="spinner align-middle">
+                     <td class="spinner default-cursor align-middle">
 
 
 
@@ -87,7 +87,7 @@ if ($_SESSION['position'] == 'admin') {
                            else if ($rows->del_flag == 'Rejected')
                               $status_update = 'btn-danger';
 
-                           echo '<span class="btn-sm font-weight-bold ' . $status_update . '"> ' . $rows->del_flag . '</span>';
+                           echo '<span class="btn-sm default-cursor font-weight-bold ' . $status_update . '"> ' . $rows->del_flag . '</span>';
                         }
 
                         ?>
@@ -109,36 +109,6 @@ if ($_SESSION['position'] == 'admin') {
 
    <script>
       $(document).ready(function() {
-         $('.tablelSectionTdUl').click(function(e) {
-            e.stopPropagation();
-         });
-
-         $('#candidate_list tr').on('click', function() {
-
-
-
-            $(this).parent().parent().hide();
-
-
-            var id = $(this).attr('data-id');
-            $.ajax({
-               url: 'candidate_profile.php',
-               type: 'POST',
-               data: {
-                  id: id
-               },
-
-               success: function(response) {
-                  $('#result').html(response);
-                  alert(data);
-               }
-            });
-         });
-      });
-      $('#profile_close').on('click', function() {
-         alert('hiii');
-         // $(".profile").hide();
-         // $('#candidate_list tr').parent().parent().show();
 
       });
    </script>
@@ -149,5 +119,5 @@ if ($_SESSION['position'] == 'admin') {
 
 ?>
 <?php
-// require_once 'includes/footer.inc.php';
+require_once 'includes/footer.inc.php';
 ?>

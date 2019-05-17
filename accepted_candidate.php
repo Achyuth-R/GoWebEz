@@ -9,7 +9,7 @@ require_once 'includes/header-inc.php';
 <section class="tableSection container">
    <div class="table-stripedresponsive">
       <table class="table table-striped table-hover acceptedBox">
-         <thead class="text-left">
+         <thead class="text-left default-cursor">
             <tr>
                <th class="text-muted acceptedBoxCheckAll">
                   <input class="m-2 checkall" type="checkbox">
@@ -56,10 +56,10 @@ require_once 'includes/header-inc.php';
                   </td>
                   <td class="acceptedName py-1">
                      <img class="acceptedprofileImg rounded-circle img-fluid mr-3" src="assets/images/img1.jpg">
-                     <p class="align-middle text-sm-center mt-2"><?php echo $rows->name ?>
-                        <span class="text-primary" class="text-primary"><br><br>( <?php echo $rows->qualification ?> )</span></p><br>
+                     <p class="align-middle default-cursor  text-sm-center mt-2"><?php echo $rows->name ?><br><br>
+                        <span class="text-primary" class="text-primary">( <?php echo $rows->qualification ?> )</span></p><br>
 
-                  <td class="align-middle">
+                  <td class="align-middle default-cursor">
                      <div class="<?php echo $color ?> btn-sm">
                         <?php echo $rows->fresher_or_experienced ?></div>
                   </td>
@@ -81,3 +81,7 @@ require_once 'includes/header-inc.php';
 </section>
 <!-- accepteded dash board end -->
 <!-- =================================================================================================== -->
+
+<?php
+require_once 'includes/footer.inc.php';
+?>

@@ -19,6 +19,31 @@ $(document).ready(function() {
     $("#border5").css({ background: "#65bd77" });
   }
 
+  $(".tablelSectionTdUl").click(function(e) {
+    e.stopPropagation();
+  });
+
+  $("#candidate_list tr").on("click", function() {
+    $(this)
+      .parent()
+      .parent()
+      .hide();
+
+    var id = $(this).attr("data-id");
+    $.ajax({
+      url: "candidate_profile.php",
+      type: "POST",
+      data: {
+        id: id
+      },
+
+      success: function(response) {
+        $("#result").html(response);
+        alert(data);
+      }
+    });
+  });
+
   $("*").on("click", function(e) {
     $('[data-toggle="popover"]').each(function() {
       if (!$(this).is(e.target) && $(this).has(e.target).length === 0) {
@@ -208,6 +233,28 @@ function chatsFetch() {
 }
 
 setInterval(chatsFetch, 1000);
+
+$("#chat").click(function() {
+  // var obj = [];
+  var obj = "";
+  var childNum = document.getElementById("chats").children.length;
+  var children = document.getElementById("chats").children;
+  for (var i = 0; i < childNum; i++) {
+    if (i == 0) {
+      obj += children[i].getAttribute("data-id").toString();
+    } else {
+      obj += "," + children[i].getAttribute("data-id").toString();
+    }
+  }
+  $.ajax({
+    url: "setChats.php",
+    type: "POST",
+    data: { id: obj },
+    success: function(data) {
+      console.log(data);
+    }
+  });
+});
 
 //===================================================================================
 

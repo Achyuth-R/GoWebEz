@@ -185,7 +185,7 @@ if ($rows->fresher_or_experienced == "Fresher") {
             </div>
          </div>
       </div>
-   </div>s
+   </div>
 
 </section>
 
