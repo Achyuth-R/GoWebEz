@@ -10,15 +10,16 @@ $start = $_POST["start"];
 if (isset($title)) {
     $query = "
  INSERT INTO events 
- (title, start_date, end_date) 
- VALUES (:title,:start_date,:end_date)
+ (title, start_date, end_date, viewed) 
+ VALUES (:title,:start_date,:end_date, :viewed)
  ";
     $statement = $db->prepare($query);
     $statement->execute(
         array(
             ':title'  => $title,
             ':start_date' => $start,
-            ':end_date' => $start // For defaulting the event duration to 2 hours
+            ':end_date' => $start, // For defaulting the event duration to 2 hours
+            ':viewed' => 0
         )
     );
 }

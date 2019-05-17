@@ -6,7 +6,7 @@ if (isset($_POST["id"])) {
 
     $query = "
  UPDATE events 
- SET title=:title,start_date=:start_date, end_date=:end_date 
+ SET title=:title,start_date=:start_date, end_date=:end_date, viewed=:viewed 
  WHERE id=:id
  ";
 
@@ -16,7 +16,8 @@ if (isset($_POST["id"])) {
             ':title'  => $_POST['title'],
             ':start_date' => $_POST['start'],
             ':end_date' => $_POST['end'],
-            ':id' => $_POST['id']
+            ':id' => $_POST['id'],
+            ':viewed' => 0
         )
     );
 }

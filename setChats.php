@@ -1,6 +1,6 @@
 <?php
 require('init.php');
-//$sql = $db->prepare("UPDATE registered_user SET notification_viewed = 1 WHERE id = :ids");
+$sql = $db->prepare("UPDATE events SET viewed = 1");
 $jsonip = $_POST['id'];
 $jsonip = explode(",", $jsonip);
 

@@ -1,7 +1,7 @@
 <?php
 require("init.php");
-$sql = $db->prepare("SELECT title, start_date from events;");
-$sql->execute();
+$sql = $db->prepare("SELECT title, start_date from events where viewed=:viewed;");
+$sql->execute(array(':viewed' => 0));
 $result = $sql->fetchAll(PDO::FETCH_OBJ);
 $count = count($result);
 $op = array();
