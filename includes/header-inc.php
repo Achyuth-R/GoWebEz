@@ -114,7 +114,6 @@
        <div class="dropdown-divider"></div>
        <div class="innerbody">
          <div id="chats" class="pointer-cursor">
-
          </div>
        </div>
      </div>

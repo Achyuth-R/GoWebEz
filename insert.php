@@ -18,8 +18,7 @@ if (isset($title)) {
         array(
             ':title'  => $title,
             ':start_date' => $start,
-            ':end_date' => $start
+            ':end_date' => $start // For defaulting the event duration to 2 hours
         )
     );
 }
-?>

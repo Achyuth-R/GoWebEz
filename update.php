@@ -9,7 +9,7 @@ if (isset($_POST["id"])) {
  SET title=:title,start_date=:start_date, end_date=:end_date 
  WHERE id=:id
  ";
- 
+
     $statement = $db->prepare($query);
     $statement->execute(
         array(

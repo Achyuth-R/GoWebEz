@@ -241,9 +241,9 @@ $("#chat").click(function() {
   var children = document.getElementById("chats").children;
   for (var i = 0; i < childNum; i++) {
     if (i == 0) {
-      obj += children[i].getAttribute("data-id").toString();
+      obj += children[i].getAttribute("data-id");
     } else {
-      obj += "," + children[i].getAttribute("data-id").toString();
+      obj += "," + children[i].getAttribute("data-id");
     }
   }
   $.ajax({
