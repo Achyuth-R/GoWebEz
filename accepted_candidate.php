@@ -2,13 +2,6 @@
 require_once 'includes/dbh.inc.php';
 require_once 'includes/header-inc.php';
 
-
-// $select_candidate_list = "SELECT * FROM registered_user WHERE '".$_SESSION['email']."' ";
-// $select_candidate_list = $db->query($select_candidate_list);
-// $rows = $select_candidate_list->fetch(PDO::FETCH_OBJ);
-// $reject_reason=$rows->reject_reason;
-// echo $reject_reason;
-
 ?>
 
 
@@ -47,7 +40,6 @@ require_once 'includes/header-inc.php';
             <?php
             $select_accepted_list = "SELECT * FROM registered_user where del_flag='Accepted' ";
             $select_accepted_list = $db->query($select_accepted_list);
-            // echo $select_accepted_list;
             $count = 0;
             while ($rows = $select_accepted_list->fetch(PDO::FETCH_OBJ)) {
                $count = $count + 1;
