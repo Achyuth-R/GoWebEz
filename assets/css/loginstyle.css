@@ -1,222 +1,187 @@
-body{
-overflow: hidden;
+body {
+  overflow: hidden;
 }
-.login_partCircle
-{
-width:700px;
-height:700px;
-border:100px solid  #003170;
-border-radius:50%;
-position:absolute;
-left:80%;
-top:-10%;
-opacity:.5;
+.login_partCircle {
+  width: 700px;
+  height: 700px;
+  border: 100px solid #003170;
+  border-radius: 50%;
+  position: absolute;
+  left: 80%;
+  top: -10%;
+  opacity: 0.5;
 }
-.login_partsmcircle
-{
-width:150px;
-height:150px;
-border:30px solid  #003170;
-border-radius:50%;
-position:absolute;
-top:90%;
-transform:translateX(-50%);
+.login_partsmcircle {
+  width: 150px;
+  height: 150px;
+  border: 30px solid #003170;
+  border-radius: 50%;
+  position: absolute;
+  top: 90%;
+  transform: translateX(-50%);
 }
-.login
-{
-position:fixed;
-height:100%;
-width:100%;
-background-color:lightgrey;
+.login {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: lightgrey;
 }
 
-.login_box
-{
-max-width:500px;
-width:100%;
-min-height:700px;
-box-shadow:2px 2px 10px grey;
-position:relative;
-margin:0 auto;
+.login_box {
+  max-width: 500px;
+  width: 100%;
+  min-height: 100vh;
+  box-shadow: 2px 2px 10px grey;
+  position: relative;
+  margin: 0 auto;
 }
-.login_part
-{
-width:320px;
-min-height:400px;
-background-color:white;
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-border-radius:10px;
-box-shadow: 2px 2px 10px lightgrey;
-padding:100px 25px;
+.login_part {
+  width: 320px;
+  min-height: 400px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px lightgrey;
+  padding: 100px 25px;
 }
-.login_part input:nth-child(1)
-{
-    margin-top:0;
+.login_part input:nth-child(1) {
+  margin-top: 0;
 }
-.login_part input{
-width:95%;
-margin-top:30px;
-padding:10px;
-border:unset;
-border-bottom:2px solid  #003170;
-
+.login_part input {
+  width: 95%;
+  margin-top: 30px;
+  padding: 10px;
+  border: unset;
+  border-bottom: 2px solid #003170;
 }
-.checkbox
-{
-    width:5%!important;
-    margin-right:10px;
+.checkbox {
+  width: 5% !important;
+  margin-right: 10px;
 }
-.login_part p
-{
-    font-size:3em;
-    font-weight:700;
-    color: #003170;
+.login_part p {
+  font-size: 3em;
+  font-weight: 700;
+  color: #003170;
 }
 
-.login_part input:focus
-{ 
-    outline:unset;
-    background-color:transparent;
+.login_part input:focus {
+  outline: unset;
+  background-color: transparent;
 }
 
-
-.icon
-{
-margin-left:-25px;
+.icon {
+  margin-left: -25px;
 }
 
-
-.login_part button 
-{
-padding:5px 40px;
-background: #003170;
-color:white;
-border:unset;
-font-weight:bold;
-letter-spacing:2px;
-overflow: hidden;
-position:relative;
-margin-top:30px;
+.login_part button {
+  padding: 5px 40px;
+  background: #003170;
+  color: white;
+  border: unset;
+  font-weight: bold;
+  letter-spacing: 2px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 30px;
 }
 
-.login_part button::after{
-content: '';
-position:absolute;
-top:50%;
-transform:translate(-50%,-50%);
-left:0;
-width:20px;
-height:20px;
-background-color:white;
-border-radius:50%;
+.login_part button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
 }
-.login_part button:hover:after
-{
-    background-color:   
-    transition:1s;
-
+.login_part button:hover:after {
+  background-color: #003170;
+  transition: 1s;
 }
-.login_part button:active
-{
-    outline:unset;
+.login_part button:active {
+  outline: unset;
 }
-.image_hand
-{
-    width:100%;
-    min-height:700px;
-    position:relative;
-} 
-.image_hand img
-{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+.image_hand {
+  width: 100%;
+  min-height: 700px;
+  position: relative;
 }
-@media screen and (max-width:991px)
-{
-    .image_hand
-    {
-        display:none;
-    }
-    .sm_image,.logo
-{
-    display:block!important;
+.image_hand img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.login_part
-{
-    padding-top:60px!important;
-
+@media screen and (max-width: 991px) {
+  .image_hand {
+    display: none;
+  }
+  .sm_image,
+  .logo {
+    display: block !important;
+  }
+  .login_part {
+    padding-top: 60px !important;
+  }
+  .login_part p {
+    display: none;
+  }
 }
-.login_part p
-{
-    display:none;
+#email_error,
+#password_error,
+.login_error {
+  color: red;
 }
-
-
-
+.sm_image {
+  display: none;
 }
-#email_error,#password_error,.login_error
-{
-    color:red;
-}
-.sm_image
-{
-    display:none;
-}
-.logo
-{
-    display:none;
+.logo {
+  display: none;
 }
 /*.notification*/
-#notification_bell
-{
-    width:30px;
-    height:30px;
-    /*background-color:red;*/
-    position:relative;
+#notification_bell {
+  width: 30px;
+  height: 30px;
+  /*background-color:red;*/
+  position: relative;
 }
-#notification-latest
-{
-    position:absolute;
-    content:'';
-    top:10%;
-    width:200px;
-    height:300px;
-    overflow-y:scroll;
-    background-color:white;
-
+#notification-latest {
+  position: absolute;
+  content: "";
+  top: 10%;
+  width: 200px;
+  height: 300px;
+  overflow-y: scroll;
+  background-color: white;
 }
-.fa-bell
-{
-    content:'';
-    position:absolute;
-    top:50%;
-    left:50%;
-    color:lightgrey;
-    transform:translate(-50%,-50%);
+.fa-bell {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: lightgrey;
+  transform: translate(-50%, -50%);
 }
-#notification_bell span
-{
-    color:red;
-    content:'';
-    position:absolute;
-    line-height:40px;
-    margin-left:15px;
-    font-weight:900;
-    font-size:12px;
+#notification_bell span {
+  color: red;
+  content: "";
+  position: absolute;
+  line-height: 40px;
+  margin-left: 15px;
+  font-weight: 900;
+  font-size: 12px;
 }
-#box
-{
-    width:200px;
-    height:200px;
-    background-color:red;
-    display:none;
+#box {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  display: none;
 }
-.box_show
-{
-    display:block!important;
+.box_show {
+  display: block !important;
 }

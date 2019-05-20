@@ -58,6 +58,7 @@ require_once 'includes/header-inc.php';
         }
       });
     } else {
+      var uID = $.cookie("userID").toString();
       $.ajax({
         url: "insert.php",
         type: "POST",
@@ -65,6 +66,7 @@ require_once 'includes/header-inc.php';
           title: title,
           start: start,
           end: end,
+          uID: uID
         },
         success: function() {
           $("#scheduleModal").modal("hide");
@@ -99,6 +101,7 @@ require_once 'includes/header-inc.php';
       },
       editable: true,
       eventResize: function(event) {
+        var uID = $.cookie("userID").toString();
         var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
         var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
         var title = event.title;
@@ -110,7 +113,8 @@ require_once 'includes/header-inc.php';
             title: title,
             start: start,
             end: end,
-            id: id
+            id: id,
+            uID: uID
           },
           success: function() {
             calendar.fullCalendar('refetchEvents');
@@ -119,6 +123,7 @@ require_once 'includes/header-inc.php';
         })
       },
       eventDrop: function(event) {
+        var uID = $.cookie("userID").toString();
         var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
         var title = event.title;
         var id = event.id;
@@ -134,13 +139,15 @@ require_once 'includes/header-inc.php';
             title: title,
             start: start,
             end: end,
-            id: id
+            id: id,
+            uID: uID
           },
-          success: function() {
+          success: function(data) {
+            console.log(data);
             calendar.fullCalendar('refetchEvents');
             toastr.info("Event upadted!");
           }
-        })
+        });
       },
 
       eventClick: function(event) {

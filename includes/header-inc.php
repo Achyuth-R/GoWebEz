@@ -26,7 +26,7 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -89,7 +89,7 @@
              </span></div>
          </li>
          <div id="profile-content">
-           <div class="profile-body-content text-center ">
+           <div class="profile-body-content text-center">
              <h6 class="text-uppercase default-cursor"><?php echo $username; ?></h6>
              <a href="logout.php" type="button" class="btn btn-danger text-center text-white">Logout</a>
            </div>

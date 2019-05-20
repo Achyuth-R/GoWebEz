@@ -1,14 +1,24 @@
 <?php
 require('init.php');
-$sql = $db->prepare("UPDATE events SET viewed = 1");
-$jsonip = $_POST['id'];
-$jsonip = explode(",", $jsonip);
+$userID = $_POST['uID'];
+$eventID = explode(",", $_POST['eventID']);
+$eventsCount = count($eventID) - 1;
+// echo $eventID[3];
+if ($userID === "1") {
+    $query = "UPDATE events SET hr_viewed = 1 WHERE id=:id";
+    $sql = $db->prepare($query);
+}
+if ($userID === "2") {
+    $sql = $db->prepare("UPDATE events SET i1_viewed = 1 WHERE id=:id");
+}
+if ($userID === "3") {
+    $sql = $db->prepare("UPDATE events SET i2_viewed = 1 WHERE id=:id");
+}
 
-// for ($i = 0; $i < count($jsonip); $i++) {
-//     try {
-//         $param = (int)$jsonip[$i];
-//         $sql->bindParam(':ids', $param, PDO::PARAM_INT);
-//         $sql->execute();
-//     } catch (exception $e) { };
-// };
-echo $jsonip;
+for ($num = 0; $num <= $eventsCount; $num += 1) {
+    $sql->execute(
+        array(
+            ':id' => $eventID[$num]
+        )
+    );
+}

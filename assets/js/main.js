@@ -202,31 +202,25 @@ $(function() {
 });
 
 function chatsFetch() {
+  var ck = $.cookie("userID");
+  var uID = ck.toString();
   $.ajax({
     url: "getChats.php",
+    type: "POST",
+    data: { uID: uID },
     cache: "false",
     success: function(json) {
-      var count = json.unreadcount;
-      document.getElementById("chatCount").innerHTML = count;
+      var unreadCount = json.unreadCount;
+      var chatCount = json.chatCount;
+      document.getElementById("chatCount").innerHTML = unreadCount;
       var ch = document.getElementById("chats");
       $("#chats").empty();
-      if (count == 0) {
+      if (chatCount == 0) {
         ch.innerHTML = "No new interview sessions";
-      }
-      for (var i = 0; i < count; i++) {
-        var title = document.createElement("div");
-        var time = document.createElement("div");
-        var divider = document.createElement("div");
-        divider.className = "dropdown-divider";
-        title.className = "text-secondary";
-        time.className = "text-primary";
-        title.innerHTML = json.chats[i].title;
-        time.innerHTML = json.chats[i].start_date.substring(0, 10);
-        var chatDiv = document.createElement("div");
-        chatDiv.appendChild(time);
-        chatDiv.appendChild(title);
-        chatDiv.appendChild(divider);
-        ch.appendChild(chatDiv);
+      } else {
+        for (var i = 0; i < chatCount; i++) {
+          chatCreator(json.chats[i], ch);
+        }
       }
     }
   });
@@ -234,22 +228,37 @@ function chatsFetch() {
 
 setInterval(chatsFetch, 1000);
 
+function chatCreator(json, ch) {
+  var title = document.createElement("div");
+  var time = document.createElement("div");
+  var divider = document.createElement("div");
+  divider.className = "dropdown-divider";
+  title.className = "text-secondary";
+  time.className = "text-primary";
+  title.innerHTML = json.title;
+  time.innerHTML = json.start_date.substring(0, 10);
+  var chatDiv = document.createElement("div");
+  chatDiv.appendChild(time);
+  chatDiv.appendChild(title);
+  chatDiv.appendChild(divider);
+  chatDiv.setAttribute("data-id", json.id);
+  ch.appendChild(chatDiv);
+}
+
 $("#chat").click(function() {
   // var obj = [];
-  var obj = "";
+  var ck = $.cookie("userID");
+  var uID = ck.toString();
   var childNum = document.getElementById("chats").children.length;
   var children = document.getElementById("chats").children;
+  var eventID = "";
   for (var i = 0; i < childNum; i++) {
-    if (i == 0) {
-      obj += children[i].getAttribute("data-id");
-    } else {
-      obj += "," + children[i].getAttribute("data-id");
-    }
+    eventID += children[i].getAttribute("data-id") + ",";
   }
   $.ajax({
     url: "setChats.php",
     type: "POST",
-    data: { id: obj },
+    data: { uID: uID, eventID: eventID },
     success: function(data) {
       console.log(data);
     }
@@ -305,7 +314,8 @@ $(document).ready(function() {
 
     if (action == "email_single") {
       email_data.push({
-        email: $(this).data("email")
+        email: $(this).data("email"),
+        name: $(this).data("name")
       });
     } else {
       $(".checkbox-child").each(function() {
@@ -318,7 +328,7 @@ $(document).ready(function() {
         }
       });
     }
-
+    console.log(email_data);
     $.ajax({
       url: "send_mail.php",
       method: "POST",
