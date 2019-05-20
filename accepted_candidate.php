@@ -1,6 +1,14 @@
 <?php
 require_once 'includes/dbh.inc.php';
 require_once 'includes/header-inc.php';
+
+
+// $select_candidate_list = "SELECT * FROM registered_user WHERE '".$_SESSION['email']."' ";
+// $select_candidate_list = $db->query($select_candidate_list);
+// $rows = $select_candidate_list->fetch(PDO::FETCH_OBJ);
+// $reject_reason=$rows->reject_reason;
+// echo $reject_reason;
+
 ?>
 
 
@@ -9,7 +17,7 @@ require_once 'includes/header-inc.php';
 <section class="tableSection container">
    <div class="table-stripedresponsive">
       <table class="table table-striped table-hover acceptedBox">
-         <thead class="text-left default-cursor">
+         <thead class="text-left">
             <tr>
                <th class="text-muted acceptedBoxCheckAll">
                   <input class="m-2 checkall" type="checkbox">
@@ -29,6 +37,9 @@ require_once 'includes/header-inc.php';
                </th>
                <th class="text-muted">
                   <i class="fas fa-location-arrow mr-1" aria-hidden="true"></i> Send Mail
+               </th>
+               <th class="text-muted">
+                  <i class="fas fa-filter mr-1" aria-hidden="true"></i>Action
                </th>
             </tr>
          </thead>
@@ -52,14 +63,14 @@ require_once 'includes/header-inc.php';
                <tr class="<?php echo $status_class ?>" data-id="<?php echo $rows->id ?>">
                   <input type="hidden" class="candidate_id " name="id" value="<?php echo $rows->id ?>">
                   <td class="acceptedsectionTdUl align-middle p-0 ">
-                     <input class="mx-3 align-middle checkbox-child single_email_select" type="checkbox" data-email="  <?php echo $rows->email ?>" data-name=" <?php echo $rows->name ?>">
+                     <input class="mx-3 align-middle checkbox-child single_email_select" type="checkbox" data-email="  <?php echo $rows->email ?>">
                   </td>
                   <td class="acceptedName py-1">
                      <img class="acceptedprofileImg rounded-circle img-fluid mr-3" src="assets/images/img1.jpg">
-                     <p class="align-middle default-cursor  text-sm-center mt-2"><?php echo $rows->name ?><br><br>
-                        <span class="text-primary" class="text-primary">( <?php echo $rows->qualification ?> )</span></p><br>
+                     <p class="align-middle text-sm-center mt-2"><?php echo $rows->name ?>
+                        <span class="text-primary" class="text-primary"><br><br>( <?php echo $rows->qualification ?> )</span></p><br>
 
-                  <td class="align-middle default-cursor">
+                  <td class="align-middle">
                      <div class="<?php echo $color ?> btn-sm">
                         <?php echo $rows->fresher_or_experienced ?></div>
                   </td>
@@ -70,18 +81,97 @@ require_once 'includes/header-inc.php';
                      11/02/2019
                   </td>
                   <td class="align-middle"><button type="button" name="email_button" class="btn btn-primary email_button email_single" id="<?php echo "$count" ?>" data-email="<?php echo $rows->email ?>" data-action="email_single">
-                        <i class="fa fa-envelope"></i></button></td>
+                        <i class="fas fa-envelope"></i></button></td>
+                  <td class="align-middle">
 
-               </tr>
+                     <?php
+                     if ($position == 'admin') {
+                        ?>
+
+
+                        <button id="acceptButton" class="btn btn-outline-success mr-3 text-md-center select" data-id="<?php echo $rows->id ?>"> Select</button>
+
+
+
+                        <button class="btn btn-outline-danger rejectButton" data-toggle="modal" data-target="#rejectModal" data-id="<?php echo $rows->id ?>"> Reject</button>
+
+
+                  </tr>
+               <?php  } ?>
             <?php } ?>
          </tbody>
       </table>
       <button type="button" class="btn btn-primary float-right mb-2 email_button" id="send_allmail" data-action="send_allmail"><i class="fas fa-location-arrow"></i>&nbsp;Send e-mail for selected</button>
    </div>
+
+
+   <div class="modal fade" id="rejectModal" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" name="rejectModalLabel">Reason for rejection:</h5>
+            </div>
+            <div class="modal-body">
+               <form id="rejectForm" name="rejectForm">
+                  <div class="form-group"></div>
+                  <input id="rejectDescription" class="form-control" name="rejectDescription" type="text" size="50">
+               </form>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal">Cancel</button>
+
+               <button type="button" class="btn btn-danger reject_button" data-dismiss="modal">Reject</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
 </section>
+<!-- <script src="assets/js/candidate_profile.js"></script> -->
+
+<script type="text/javascript">
+   $('.select').click(function(s) {
+      alert('hellooo');
+      var select_id = $(this).data('id');
+      $.ajax({
+         type: "GET",
+         url: "accept_act.php",
+         data: {
+            select_id: select_id
+         },
+         success: function(data) {
+            location.reload();
+
+         }
+      });
+   });
+
+   $('.reject_button').click(function() {
+      var id = $("#rejectDescription").data("id");
+      var reason = $('#rejectDescription').val();
+
+      $.ajax({
+         type: "POST",
+         url: "reject_act.php",
+         data: {
+            reject_id: id,
+            reject_reason: reason
+         },
+         success: function(data) {
+            location.reload();
+         }
+      });
+
+   });
+
+   $(".rejectButton").click(function() {
+      var id = $(this).data("id");
+      $("#rejectDescription").data("id", id);
+   });
+</script>
+
+
+
+
 <!-- accepteded dash board end -->
 <!-- =================================================================================================== -->
-
-<?php
-require_once 'includes/footer.inc.php';
-?>

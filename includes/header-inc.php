@@ -8,6 +8,10 @@
   }
   $username = $_SESSION['username'];
   $user_id = $_SESSION['user_id'];
+  $select_session_user = "SELECT * FROM login WHERE email = '" . $_SESSION['email'] . "' ";
+  $result = $db->query($select_session_user);
+  $row = $result->fetch(PDO::FETCH_OBJ);
+  $position = $row->position;
   ?>
  <!-- <!DOCTYPE html> -->
  <html>
