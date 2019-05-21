@@ -219,7 +219,9 @@ function chatsFetch() {
         ch.innerHTML = "No new interview sessions";
       } else {
         for (var i = 0; i < chatCount; i++) {
-          chatCreator(json.chats[i], ch);
+          if (json.chats[i].created_by != uID) {
+            chatCreator(json.chats[i], ch);
+          }
         }
       }
     }

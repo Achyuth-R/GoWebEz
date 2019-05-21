@@ -1,7 +1,7 @@
 <?php
 require("init.php");
 $userID = $_POST['uID'];
-$sql = $db->prepare("SELECT title, start_date, id FROM events");
+$sql = $db->prepare("SELECT * FROM events");
 $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_OBJ);
 $count = count($result);
@@ -23,7 +23,8 @@ $countResult = $sql->fetchAll(PDO::FETCH_OBJ);
 $op['unreadCount'] = (int)$countResult[0]->count;
 
 for ($i = 0; $i < count($result); $i++) {
-    $op['chats'][] =  array("title" => $result[$i]->title, "start_date" =>  $result[$i]->start_date, "id" => $result[$i]->id);
+    $op['chats'][] =  array("title" => $result[$i]->title, "start_date" =>  $result[$i]->start_date, "id" => $result[$i]->id, "end_date" => $result[$i]->end_date, "hr_viewed" => $result[$i]->hr_viewed, "i1_viewed" => $result[$i]->i1_viewed, "i2_viewed" => $result[$i]->i2_viewed, "created_by" => $result[$i]->created_by);
 }
+
 header('Content-type: application/json');
 echo json_encode($op);

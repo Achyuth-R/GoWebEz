@@ -21,7 +21,7 @@ if ($_SESSION['position'] == 'admin') {
                   </th>
                   <th class="text-muted"><i class="fa fa-pen-o mr-1" aria-hidden="true"></i>Designation</th>
                   <th class="text-muted"><i class="fa fa-envelope-o mr-1" aria-hidden="true"></i> E-mail</th>
-                  <th class="text-muted"><i class="fa fa-calendar mr-1" aria-hidden="true"></i> Date</th>
+                  <th class="text-muted"><i class="fa fa-calendar mr-1" aria-hidden="true"></i> Date of Application</th>
                   <th class="text-muted"><i class="fa fa-line-chart mr-1" aria-hidden="true"></i> Status</th>
                </tr>
             </thead>

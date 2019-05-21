@@ -10,7 +10,7 @@ require_once 'includes/header-inc.php';
 <section class="tableSection container">
    <div class="table-stripedresponsive">
       <table class="table table-striped table-hover acceptedBox">
-         <thead class="text-left">
+         <thead class="text-left default-cursor">
             <tr>
                <th class="text-muted acceptedBoxCheckAll">
                   <input class="m-2 checkall" type="checkbox">
@@ -26,7 +26,7 @@ require_once 'includes/header-inc.php';
                   <i class="fas fa-envelope mr-1" aria-hidden="true"></i> E-mail
                </th>
                <th class="text-muted">
-                  <i class="fas fa-calendar mr-1" aria-hidden="true"></i> Date
+                  <i class="fas fa-calendar mr-1" aria-hidden="true"></i> Date of Application
                </th>
                <th class="text-muted">
                   <i class="fas fa-location-arrow mr-1" aria-hidden="true"></i> Send Mail
@@ -81,7 +81,7 @@ require_once 'includes/header-inc.php';
                         ?>
 
 
-                        <button id="acceptButton" class="btn btn-outline-success mr-3 text-md-center select" data-id="<?php echo $rows->id ?>"> Select</button>
+                        <button id="selectButton" class="btn btn-outline-success mr-3 text-md-center select" data-id="<?php echo $rows->id ?>"> Select</button>
 
 
 
@@ -123,17 +123,15 @@ require_once 'includes/header-inc.php';
 
 <script type="text/javascript">
    $('.select').click(function(s) {
-      alert('hellooo');
       var select_id = $(this).data('id');
       $.ajax({
-         type: "GET",
-         url: "accept_act.php",
+         type: "POST",
+         url: "select_act.php",
          data: {
             select_id: select_id
          },
          success: function(data) {
             location.reload();
-
          }
       });
    });
@@ -150,6 +148,7 @@ require_once 'includes/header-inc.php';
             reject_reason: reason
          },
          success: function(data) {
+            console.log("Done Boy");
             location.reload();
          }
       });

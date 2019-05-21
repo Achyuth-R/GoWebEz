@@ -41,6 +41,7 @@ require_once 'includes/header-inc.php';
     var start = $('#comment').data('dataStart');
     var end = $('#comment').data('dataEnd');
     var id = $('#comment').data('dataID');
+    var uID = $.cookie("userID").toString();
     if (id) {
       $.ajax({
         url: "update.php",
@@ -49,7 +50,8 @@ require_once 'includes/header-inc.php';
           title: title,
           start: start,
           end: end,
-          id: id
+          id: id,
+          uID: uID
         },
         success: function() {
           $("#scheduleModal").modal("hide");
