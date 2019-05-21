@@ -55,7 +55,7 @@ require_once 'includes/header-inc.php';
                <tr class="<?php echo $status_class ?>" data-id="<?php echo $rows->id ?>">
                   <input type="hidden" class="candidate_id " name="id" value="<?php echo $rows->id ?>">
                   <td class="acceptedsectionTdUl align-middle p-0 ">
-                     <input class="mx-3 align-middle checkbox-child single_email_select" type="checkbox" data-email="  <?php echo $rows->email ?>">
+                     <input class="mx-3 align-middle checkbox-child single_email_select" type="checkbox" data-email="  <?php echo $rows->email ?>" data-name=" <?php echo $rows->name ?>">
                   </td>
                   <td class="acceptedName py-1">
                      <img class="acceptedprofileImg rounded-circle img-fluid mr-3" src="assets/images/img1.jpg">
@@ -86,9 +86,31 @@ require_once 'includes/header-inc.php';
             <?php } ?>
          </tbody>
       </table>
-      <button type="button" class="btn btn-primary float-right mb-2 email_button" id="send_allmail" data-action="send_allmail"><i class="fas fa-location-arrow"></i>&nbsp;Send e-mail for selected</button>
-   </div>
 
+
+
+   </div>
+   <div class="container">
+      <div class="row">
+         <div class="col-sm">
+         </div>
+         <div class="col-sm">
+            <select id="eventID" class="custom-select">
+               <option selected>Interview Slots</option>
+               <?php
+               $events = "SELECT * FROM events";
+               $events = $db->query($events);
+               while ($rows = $events->fetch(PDO::FETCH_OBJ)) { ?>
+                  <option value=" <?php echo $rows->id ?> "> <?php echo substr($rows->start_date, 0, 16) . " to " . substr($rows->end_date, 11, 5) ?> </option>
+               <?php }
+            ?>
+            </select>
+         </div>
+         <div class="col-sm">
+            <button type="button" class="btn btn-primary float-right mb-2 email_button" id="send_allmail" data-action="send_allmail"><i class="fas fa-location-arrow"></i>&nbsp;Send e-mail for selected</button>
+         </div>
+      </div>
+   </div>
 
    <div class="modal fade" id="rejectModal" role="dialog">
       <div class="modal-dialog">

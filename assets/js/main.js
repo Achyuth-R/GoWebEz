@@ -244,8 +244,8 @@ function chatCreator(json, ch) {
   end.className = "text-danger";
   title.innerHTML = json.title;
   time.innerHTML = json.start_date.substring(0, 10);
-  start.innerHTML = "End   : " + json.start_date.substring(12, 19);
-  end.innerHTML = "Start : " + json.end_date.substring(12, 19);
+  start.innerHTML = "End   : " + json.start_date.substring(11, 16);
+  end.innerHTML = "Start : " + json.end_date.substring(11, 16);
   var chatDiv = document.createElement("div");
   chatDiv.appendChild(time);
   chatDiv.appendChild(start);
@@ -322,28 +322,28 @@ $(document).ready(function() {
     if (action == "email_single") {
       email_data.push({
         email: $(this).data("email"),
-        name: $(this).data("name")
+        name: $(this).data("name"),
+        eventID: $("#eventID").val()
       });
     } else {
       $(".checkbox-child").each(function() {
-        var ischecked = $(this).is(":checked");
         if ($(this).is(":checked")) {
           email_data.push({
-            email: $(this).data("email")
+            email: $(this).data("email"),
+            name: $(this).data("name"),
+            eventID: $("#eventID").val()
           });
         }
       });
     }
-    console.log(email_data);
     $.ajax({
       url: "send_mail.php",
       method: "POST",
       data: {
         email_data: email_data
       },
-
-      success: function(data) {
-        console.log(data);
+      success: function(json) {
+        console.log(json);
       }
     });
   });
