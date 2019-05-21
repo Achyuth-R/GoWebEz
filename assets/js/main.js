@@ -233,14 +233,23 @@ setInterval(chatsFetch, 1000);
 function chatCreator(json, ch) {
   var title = document.createElement("div");
   var time = document.createElement("div");
+  var start = document.createElement("div");
+  var end = document.createElement("div");
   var divider = document.createElement("div");
+  var start = document.createElement("div");
   divider.className = "dropdown-divider";
   title.className = "text-secondary";
   time.className = "text-primary";
+  start.className = "text-success";
+  end.className = "text-danger";
   title.innerHTML = json.title;
   time.innerHTML = json.start_date.substring(0, 10);
+  start.innerHTML = "End   : " + json.start_date.substring(12, 19);
+  end.innerHTML = "Start : " + json.end_date.substring(12, 19);
   var chatDiv = document.createElement("div");
   chatDiv.appendChild(time);
+  chatDiv.appendChild(start);
+  chatDiv.appendChild(end);
   chatDiv.appendChild(title);
   chatDiv.appendChild(divider);
   chatDiv.setAttribute("data-id", json.id);
@@ -307,11 +316,7 @@ $(document).ready(function() {
     $(this).attr("disabled", "disabled");
     $(this).css("opacity", ".1");
     var id = $(this).attr("id");
-    // alert(id);
     var action = $(this).data("action");
-    // alert(action);
-    // var  email=$(this).data("email");op
-    // alert(email);
     var email_data = [];
 
     if (action == "email_single") {
@@ -323,7 +328,6 @@ $(document).ready(function() {
       $(".checkbox-child").each(function() {
         var ischecked = $(this).is(":checked");
         if ($(this).is(":checked")) {
-          // alert('hiiii');
           email_data.push({
             email: $(this).data("email")
           });

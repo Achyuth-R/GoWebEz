@@ -53,7 +53,7 @@ require_once 'includes/header-inc.php';
 								<span class="text-primary" class="text-primary"><br><br>( <?php echo $rows->qualification ?> )</span></p><br>
 
 						<td class="align-middle">
-							<div class="<?php echo $color ?> btn-sm">
+							<div class="<?php echo $color ?> btn-sm default-cursor">
 								<?php echo $rows->fresher_or_experienced ?></div>
 						</td>
 						</td>

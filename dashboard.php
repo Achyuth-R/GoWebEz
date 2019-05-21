@@ -106,12 +106,6 @@ if ($_SESSION['position'] == 'admin') {
 
 
    </div>
-
-   <script>
-      $(document).ready(function() {
-
-      });
-   </script>
 <?php
 } else {
    echo "<h1> you are an interviewer, please check interview schedule for updates</h1>";

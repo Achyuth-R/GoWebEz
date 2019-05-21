@@ -79,15 +79,8 @@ require_once 'includes/header-inc.php';
                      <?php
                      if ($position == 'admin') {
                         ?>
-
-
                         <button id="selectButton" class="btn btn-outline-success mr-3 text-md-center select" data-id="<?php echo $rows->id ?>"> Select</button>
-
-
-
                         <button class="btn btn-outline-danger rejectButton" data-toggle="modal" data-target="#rejectModal" data-id="<?php echo $rows->id ?>"> Reject</button>
-
-
                   </tr>
                <?php  } ?>
             <?php } ?>
