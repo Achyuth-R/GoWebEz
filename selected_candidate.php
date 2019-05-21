@@ -5,7 +5,7 @@ require_once 'includes/header-inc.php';
 
 <section class="tableSection container">
 	<div class="table-stripedresponsive">
-		<table class="table table-striped table-hover acceptedBox">
+		<table class="table table-hover acceptedBox">
 			<thead class="text-left default-cursor">
 				<tr>
 					<th class="text-muted acceptedBoxCheckAll">

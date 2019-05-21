@@ -95,6 +95,7 @@ $(document).ready(function() {
   // ===============================
   $(".pdfajax").click(function() {
     var resumeURL = $(this).attr("data-resume");
+    console.log(resumeURL);
     window.open(resumeURL);
   });
 
@@ -117,7 +118,6 @@ $(document).ready(function() {
       url: "accept_act.php",
       type: "POST",
       data: { accept_id: accept_id },
-
       success: function(response) {
         $("#result").html(response);
       }
@@ -125,8 +125,6 @@ $(document).ready(function() {
   });
 
   $("#reject-btn").on("click", function() {
-    // alert('hiii');
-
     // Validation
     if ($("#rejectDescription").val() == "") {
       alert("Please provide a valid reason!");

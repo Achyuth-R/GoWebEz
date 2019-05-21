@@ -51,7 +51,7 @@ if ($rows->fresher_or_experienced == "Fresher") {
                         <td class="pl-3"><?php echo $rows->residence; ?></td>
                      </tr>
                      <tr>
-                        <td colspan="2" class="text-center pt-4"><button data-resume="<?php echo $rows->fileName ?>" type="button" class="btn btn-primary font-weight-bold pdfajax">View Resume</button>
+                        <td colspan="2" class="text-center pt-4"><button data-resume="<?php echo $rows->resume_upload ?>" type="button" class="btn btn-primary font-weight-bold pdfajax">View Resume</button>
                         </td>
                      </tr>
                   </tbody>
