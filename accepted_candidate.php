@@ -72,8 +72,10 @@ require_once 'includes/header-inc.php';
                   <td class="acceptedComment  align-middle">
                      11/02/2019
                   </td>
-                  <td class="align-middle"><button type="button" name="email_button" class="btn btn-primary email_button email_single" id="<?php echo "$count" ?>" data-email="<?php echo $rows->email ?>" data-action="email_single">
-                        <i class="fas fa-envelope"></i></button></td>
+                  <td class="align-middle"><button type="button" name="email_button" class="btn btn-primary email_button email_single" data-email="<?php echo $rows->email ?>" data-name="<?php echo $rows->name ?>" data-action="email_single">
+                        <i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-warning"><?php if ($rows->mail_sent == "1") {
+                                                                                                   echo "Mail Sent";
+                                                                                                } ?></span></button></td>
                   <td class="align-middle">
 
                      <?php
@@ -90,27 +92,38 @@ require_once 'includes/header-inc.php';
 
 
    </div>
-   <div class="container">
-      <div class="row">
-         <div class="col-sm">
-         </div>
-         <div class="col-sm">
-            <select id="eventID" class="custom-select">
-               <option selected>Interview Slots</option>
-               <?php
-               $events = "SELECT * FROM events";
-               $events = $db->query($events);
-               while ($rows = $events->fetch(PDO::FETCH_OBJ)) { ?>
-                  <option value=" <?php echo $rows->id ?> "> <?php echo substr($rows->start_date, 0, 16) . " to " . substr($rows->end_date, 11, 5) ?> </option>
-               <?php }
-            ?>
-            </select>
-         </div>
-         <div class="col-sm">
-            <button type="button" class="btn btn-primary float-right mb-2 email_button" id="send_allmail" data-action="send_allmail"><i class="fas fa-location-arrow"></i>&nbsp;Send e-mail for selected</button>
+   <?php if ($_SESSION['position'] == 'admin') { ?>
+      <div class="container">
+         <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+               <select id="eventID" class="custom-select">
+                  <option selected>Interview Slots</option>
+                  <?php
+                  $events = "SELECT * FROM events";
+                  $events = $db->query($events);
+                  while ($rows = $events->fetch(PDO::FETCH_OBJ)) { ?>
+                     <option value=" <?php echo $rows->id ?> "> <?php echo substr($rows->start_date, 0, 16) . " to " . substr($rows->end_date, 11, 5) ?> <span style="font-weight:bold;"> &nbsp;|&nbsp; <?php if ($rows->created_by == "0") {
+                                                                                                                                                                                                            echo "Admin";
+                                                                                                                                                                                                         }
+                                                                                                                                                                                                         if ($rows->created_by == "1") {
+                                                                                                                                                                                                            echo "Interviewer 1";
+                                                                                                                                                                                                         }
+                                                                                                                                                                                                         if ($rows->created_by == "2") {
+                                                                                                                                                                                                            echo "Interviewer 2";
+                                                                                                                                                                                                         } ?></span></option>
+                  <?php }
+               ?>
+               </select>
+            </div>
+            <div class="col-sm">
+               <button type="button" class="btn btn-primary float-right mb-2 email_button" id="send_allmail" data-action="send_allmail"><i class="fas fa-location-arrow"></i>&nbsp;Send e-mail for selected</button>
+            </div>
          </div>
       </div>
-   </div>
+   <?php } ?>
+
 
    <div class="modal fade" id="rejectModal" role="dialog">
       <div class="modal-dialog">
@@ -134,8 +147,7 @@ require_once 'includes/header-inc.php';
    </div>
 
 </section>
-<script src="/assets/js/accepted_candidate.js"></script>
-
+<script src="assets/js/accepted_candidate.js"></script>
 
 
 

@@ -10,15 +10,15 @@ if (isset($_POST["id"])) {
 
     if ($uID === "1") {
         $hrValue = 2;
-        $created_by = 1;
+        $created_by = 0;
     }
     if ($uID === "2") {
         $i1Value = 2;
-        $created_by = 2;
+        $created_by = 1;
     }
     if ($uID === "3") {
         $i2Value = 2;
-        $created_by = 3;
+        $created_by = 2;
     }
     $query = "UPDATE events SET title=:title, start_date=:start_date, end_date=:end_date, hr_viewed=:hr_viewed, i1_viewed=:i1_viewed, i2_viewed=:i2_viewed, created_by=:created_by WHERE id=:id;";
 

@@ -6,6 +6,7 @@ $sql->execute(array(":id" => $_POST["email_data"][0]["eventID"]));
 $result = $sql->fetchAll(PDO::FETCH_OBJ);
 $startdate = $result[0]->start_date;
 $enddate = $result[0]->end_date;
+$mailFlag = $db->prepare("UPDATE registered_user SET mail_sent = 1 WHERE email = :email; ");
 echo json_encode($_POST["email_data"]);
 if (isset($_POST['email_data'])) {
     $email_data = $_POST['email_data'];
@@ -17,6 +18,8 @@ if (isset($_POST['email_data'])) {
         $message = 'Dear ' . $email_data[$i]["name"] . ", \n\nYou have been selected for an interview with GoWebEz!\n\nDate : " . substr($startdate, 0, 10) . "\nTIMINGS (24-hour Format)\n\tFrom : " . substr($startdate, 11, 15) . "\n\tTo     : " . substr($enddate, 11, 15) . "\n\n\nKindly be present in time with your updated resume and relevant documents.\n\nRegards,\nTeam GoWebEz.";
         $headers = 'From:aravindansridhars@gmail.com';
         $retval = mail($email_to, $subject, $message, $headers);
+        $mailFlag->bindParam(':email', $email_data[$i]["email"], PDO::PARAM_STR);
+        $mailFlag->execute();
         echo $retval;
     }
 }

@@ -6,9 +6,13 @@ $(document).ready(function() {
   }
 
   if ($("#statusFlags").attr("data-status") == "Accepted") {
-    $("#acceptButton").removeClass("btn-outline-success");
-    $("#acceptButton").addClass("btn-success");
+    $("#acceptButton").removeClass("btn-outline-primary");
+    $("#acceptButton").addClass("btn-primary");
     $("#rejectButton").addClass("disabled");
+  }
+  if ($("#statusFlags").attr("data-status") == "Selected") {
+    $("#statusFlags").hide();
+    $("#selected").show();
   }
 
   $("#acceptButton").on("click", function() {
@@ -106,8 +110,8 @@ $(document).ready(function() {
   }
 
   if ($("#statusFlags").attr("data-status") == "Accepted") {
-    $("#acceptButton").removeClass("btn-outline-success");
-    $("#acceptButton").addClass("btn-success");
+    $("#acceptButton").removeClass("btn-outline-primary");
+    $("#acceptButton").addClass("btn-primary");
     $("#rejectButton").attr("disabled", true);
   }
 

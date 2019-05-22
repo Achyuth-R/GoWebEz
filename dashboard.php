@@ -48,6 +48,8 @@ if ($_SESSION['position'] == 'admin') {
                      $status_class = 'gray_clr';
                   else if ($rows->del_flag == 'D')
                      $status_class = 'white';
+                  else if ($rows->del_flag == 'Selected')
+                     $status_class = 'gray_clr';
                   ?>
                   <tr class="<?php echo $status_class ?>" data-id="<?php echo $rows->id ?>">
                      <input type="hidden" class="candidate_id" name="id" value="<?php echo $rows->id ?>">
@@ -83,9 +85,11 @@ if ($_SESSION['position'] == 'admin') {
                         } else {
 
                            if ($rows->del_flag == 'Accepted')
-                              $status_update = 'btn-success';
-                           else if ($rows->del_flag == 'Rejected')
+                              $status_update = 'btn-info';
+                           if ($rows->del_flag == 'Rejected')
                               $status_update = 'btn-danger';
+                           if ($rows->del_flag == 'Selected')
+                              $status_update = 'btn-success';
 
                            echo '<span class="btn-sm default-cursor font-weight-bold ' . $status_update . '"> ' . $rows->del_flag . '</span>';
                         }
