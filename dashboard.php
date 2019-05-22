@@ -42,13 +42,9 @@ if ($_SESSION['position'] == 'admin') {
                   ?>
 
                   <?php
-                  if ($rows->del_flag == 'Accepted')
-                     $status_class = 'gray_clr';
-                  else if ($rows->del_flag == 'Rejected')
-                     $status_class = 'gray_clr';
-                  else if ($rows->del_flag == 'D')
+                  if ($rows->del_flag == 'D')
                      $status_class = 'white';
-                  else if ($rows->del_flag == 'Selected')
+                  else
                      $status_class = 'gray_clr';
                   ?>
                   <tr class="<?php echo $status_class ?>" data-id="<?php echo $rows->id ?>">

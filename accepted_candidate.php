@@ -99,7 +99,7 @@ require_once 'includes/header-inc.php';
             </div>
             <div class="col-sm">
                <select id="eventID" class="custom-select">
-                  <option selected>Interview Slots</option>
+                  <option value="notSelected" selected>Interview Slots</option>
                   <?php
                   $events = "SELECT * FROM events";
                   $events = $db->query($events);

@@ -37,6 +37,10 @@ $(".rejectButton").click(function() {
 
 $(document).ready(function() {
   $(".email_button").click(function() {
+    if ($("#eventID").val() == "notSelected") {
+      alert("Please select a valid interview slot!");
+      return false;
+    }
     $(this).attr("disabled", "disabled");
     $(this).css("opacity", ".1");
     var id = $(this).attr("id");
