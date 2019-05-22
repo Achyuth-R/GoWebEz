@@ -55,7 +55,7 @@ require_once 'includes/header-inc.php';
                <tr class="<?php echo $status_class ?>" data-id="<?php echo $rows->id ?>">
                   <input type="hidden" class="candidate_id " name="id" value="<?php echo $rows->id ?>">
                   <td class="acceptedsectionTdUl align-middle p-0 ">
-                     <input class="mx-3 align-middle checkbox-child single_email_select" type="checkbox" data-email="  <?php echo $rows->email ?>" data-name=" <?php echo $rows->name ?>">
+                     <input class="mx-3 align-middle checkbox-child single_email_select" type="checkbox" data-email="<?php echo $rows->email ?>" data-name="<?php echo $rows->name ?>">
                   </td>
                   <td class="acceptedName py-1">
                      <img class="acceptedprofileImg rounded-circle img-fluid mr-3" src="assets/images/img1.jpg">
@@ -134,47 +134,7 @@ require_once 'includes/header-inc.php';
    </div>
 
 </section>
-<!-- <script src="assets/js/candidate_profile.js"></script> -->
-
-<script type="text/javascript">
-   $('.select').click(function(s) {
-      var select_id = $(this).data('id');
-      $.ajax({
-         type: "POST",
-         url: "select_act.php",
-         data: {
-            select_id: select_id
-         },
-         success: function(data) {
-            location.reload();
-         }
-      });
-   });
-
-   $('.reject_button').click(function() {
-      var id = $("#rejectDescription").data("id");
-      var reason = $('#rejectDescription').val();
-
-      $.ajax({
-         type: "POST",
-         url: "reject_act.php",
-         data: {
-            reject_id: id,
-            reject_reason: reason
-         },
-         success: function(data) {
-            console.log("Done Boy");
-            location.reload();
-         }
-      });
-
-   });
-
-   $(".rejectButton").click(function() {
-      var id = $(this).data("id");
-      $("#rejectDescription").data("id", id);
-   });
-</script>
+<script src="/assets/js/accepted_candidate.js"></script>
 
 
 

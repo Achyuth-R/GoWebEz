@@ -342,8 +342,8 @@ $(document).ready(function() {
       data: {
         email_data: email_data
       },
-      success: function(json) {
-        console.log(json);
+      success: function(data) {
+        console.log(data);
       }
     });
   });
