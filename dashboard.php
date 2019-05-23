@@ -109,7 +109,7 @@ if ($_SESSION['position'] == 'admin') {
 <?php
 } else {
 
-   
+
    $sql =  $db->prepare('SELECT id FROM registered_user WHERE del_flag = "Rejected" ');
    $sql->execute();
    $reject = $sql->fetchAll(PDO::FETCH_OBJ);
@@ -127,7 +127,7 @@ if ($_SESSION['position'] == 'admin') {
    $all = $sql->fetchAll(PDO::FETCH_OBJ);
    $count_all =  count($all);
    echo '
-   <h3 class="display-4" style="text-align:center; font-size: 40px;">Total Number of candidates:' . $count_all .'</h3>
+   <h3 class="display-4" style="text-align:center; font-size: 40px;">Total Number of candidates:' . $count_all . '</h3>
    <hr>
    <div style="top:50%; transform:translate(0,50%);">
    <center>
@@ -136,7 +136,7 @@ if ($_SESSION['position'] == 'admin') {
        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
      <div class="card-header"><h4>Accepted Candidates</h4></div>
      <div class="card-body">
-       <h5 class="card-title">' . $count_accept . '</h5>
+       <h1 class="btn btn-lg btn-warning">' . $count_accept . '</h1>
        
      </div>
    </div>
@@ -145,7 +145,7 @@ if ($_SESSION['position'] == 'admin') {
        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
      <div class="card-header"><h4>Rejected Candidates</h4></div>
      <div class="card-body">
-       <h5 class="card-title">' . $count_reject . '</h5>
+       <h1 class="btn btn-lg btn-warning">' . $count_reject . '</h1>
        
      </div>
    </div>
@@ -154,7 +154,7 @@ if ($_SESSION['position'] == 'admin') {
        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
      <div class="card-header"><h4>Selected Candidates</h4></div>
      <div class="card-body">
-       <h5 class="card-title">' . $count_select . '</h5>
+       <h1 class="btn btn-lg btn-warning">' . $count_select . '</h1>
       
      </div>
    </div>
@@ -166,7 +166,6 @@ if ($_SESSION['position'] == 'admin') {
    </div>    
       
    ';
-
 }
 
 ?>
