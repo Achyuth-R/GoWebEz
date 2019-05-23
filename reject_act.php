@@ -11,8 +11,7 @@ $update_reject = $update_reject . $reject_reason . "' WHERE id=" . $reject_id;
 $update = $db->prepare($update_reject);
 $update->execute();
 if ($update) {
-	header('Location:candidate_profile.php');
-	echo "fun";
+	echo "Rejected";
 }
 
 ?>

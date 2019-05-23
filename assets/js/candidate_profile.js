@@ -35,7 +35,8 @@ $(document).ready(function() {
     }
 
     // Reject AJAX
-
+    var action_by = $.cookie("userID");
+    console.log(action_by);
     var reject_id = $(this).attr("data-id");
     var reason = $("#rejectDescription").val();
     $.ajax({
@@ -43,10 +44,11 @@ $(document).ready(function() {
       type: "POST",
       data: {
         reject_id: reject_id,
-        reject_reason: reason
+        reject_reason: reason,
+        action_by: action_by
       },
       success: function(response) {
-        $("#result").html(response);
+        window.location.replace("dashboard.php");
       }
     });
 
@@ -70,8 +72,8 @@ $(document).ready(function() {
 
   // Accepted button CSS change
   $("#acceptButton").click(function() {
-    $(this).removeClass("btn-outline-success");
-    $(this).addClass("btn-success");
+    $(this).removeClass("btn-outline-primary");
+    $(this).addClass("btn-primary");
     $("#rejectButton").addClass("disabled");
   });
   // ===========================================================================================
