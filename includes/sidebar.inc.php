@@ -31,12 +31,16 @@
              
             </li>
             </a>
+
+            <?php
+            if($position == "admin"){?>
             <a class="nav-item-link" href="selected_candidate.php">
             <li class="nav-item border5" id="border5">
                    <i class="fas fa-user-tie pr-3 "></i>
                     <span class="nav-main-link-name">Selected Candidate</span>
             </li>
-        </a>
+            </a>
+            <?php } ?>
         </ul>
     </div>
 </aside>
