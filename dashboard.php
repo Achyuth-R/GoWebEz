@@ -108,7 +108,12 @@ if ($_SESSION['position'] == 'admin') {
    </div>
 <?php
 } else {
-   echo "<h1> you are an interviewer, please check interview schedule for updates</h1>";
+   echo '<div class="alert alert-danger" role="alert">
+   <h4 class="alert-heading">Oops! You are in the wrong page.</h4>
+   <p>Unauthorized Access.</p>
+   <hr>
+   <p class="mb-0">Please return to Interview Schedule.</p>
+ </div>';
 }
 
 ?>

@@ -3,7 +3,6 @@ require('init.php');
 $userID = $_POST['uID'];
 $eventID = explode(",", $_POST['eventID']);
 $eventsCount = count($eventID) - 1;
-// echo $eventID[3];
 if ($userID === "1") {
     $query = "UPDATE events SET hr_viewed = 1 WHERE id=:id";
     $sql = $db->prepare($query);

@@ -17,12 +17,10 @@ $(document).ready(function() {
 
   $("#acceptButton").on("click", function() {
     var accept_id = $(this).attr("data-id");
-
     $.ajax({
       url: "accept_act.php",
       type: "POST",
       data: { accept_id: accept_id },
-
       success: function(response) {
         $("#result").html(response);
       }
@@ -37,12 +35,16 @@ $(document).ready(function() {
     }
 
     // Reject AJAX
+
     var reject_id = $(this).attr("data-id");
     var reason = $("#rejectDescription").val();
     $.ajax({
       url: "reject_act.php",
       type: "POST",
-      data: { reject_id: reject_id, reject_reason: reason },
+      data: {
+        reject_id: reject_id,
+        reject_reason: reason
+      },
       success: function(response) {
         $("#result").html(response);
       }

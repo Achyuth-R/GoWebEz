@@ -32,8 +32,6 @@ if (isset($_POST['submit'])) {
 
 
 
-
-	// print_r($result);
 	if ($sql->rowCount() > 0) {
 		foreach ($result as $row) {
 			$pass = $row->password;

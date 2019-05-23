@@ -2,7 +2,7 @@
 require_once 'init.php';
 
 $id = $_POST['id'];
-$select_candidate_list = "SELECT * FROM registered_user WHERE id=$id";
+$select_candidate_list = "SELECT * FROM registered_user WHERE id=" . $id;
 $select_candidate_list = $db->query($select_candidate_list);
 $rows = $select_candidate_list->fetch(PDO::FETCH_OBJ);
 

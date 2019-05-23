@@ -28,9 +28,11 @@ require_once 'includes/header-inc.php';
                <th class="text-muted">
                   <i class="fas fa-calendar mr-1" aria-hidden="true"></i> Date of Application
                </th>
-               <th class="text-muted">
-                  <i class="fas fa-location-arrow mr-1" aria-hidden="true"></i> Send Mail
-               </th>
+               <?php if ($position == 'admin') { ?>
+                  <th class="text-muted">
+                     <i class="fas fa-location-arrow mr-1" aria-hidden="true"></i> Send Mail
+                  </th>
+               <?php } ?>
                <th class="text-muted">
                   <i class="fas fa-filter mr-1" aria-hidden="true"></i>Action
                </th>
@@ -72,19 +74,19 @@ require_once 'includes/header-inc.php';
                   <td class="acceptedComment  align-middle">
                      11/02/2019
                   </td>
-                  <td class="align-middle"><button type="button" name="email_button" class="btn btn-primary email_button email_single" data-email="<?php echo $rows->email ?>" data-name="<?php echo $rows->name ?>" data-action="email_single">
-                        <i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-warning"><?php if ($rows->mail_sent == "1") {
-                                                                                                   echo "Mail Sent";
-                                                                                                } ?></span></button></td>
+                  <?php if ($position == 'admin') { ?>
+                     <td class="align-middle"><button type="button" name="email_button" class="btn btn-primary email_button email_single" data-email="<?php echo $rows->email ?>" data-name="<?php echo $rows->name ?>" data-action="email_single">
+                           <i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-warning"><?php if ($rows->mail_sent == "1") {
+                                                                                                      echo "Mail Sent";
+                                                                                                   } ?></span></button></td>
+                  <?php } ?>
                   <td class="align-middle">
 
-                     <?php
-                     if ($position == 'admin') {
-                        ?>
-                        <button id="selectButton" class="btn btn-outline-success mr-3 text-md-center select" data-id="<?php echo $rows->id ?>"> Select</button>
-                        <button class="btn btn-outline-danger rejectButton" data-toggle="modal" data-target="#rejectModal" data-id="<?php echo $rows->id ?>"> Reject</button>
-                  </tr>
-               <?php  } ?>
+
+                     <button id="selectButton" class="btn btn-outline-success mr-3 text-md-center select" data-id="<?php echo $rows->id ?>"> Select</button>
+                     <button class="btn btn-outline-danger rejectButton" data-toggle="modal" data-target="#rejectModal" data-id="<?php echo $rows->id ?>"> Reject</button>
+               </tr>
+
             <?php } ?>
          </tbody>
       </table>
@@ -104,13 +106,13 @@ require_once 'includes/header-inc.php';
                   $events = "SELECT * FROM events";
                   $events = $db->query($events);
                   while ($rows = $events->fetch(PDO::FETCH_OBJ)) { ?>
-                     <option value=" <?php echo $rows->id ?> "> <?php echo substr($rows->start_date, 0, 16) . " to " . substr($rows->end_date, 11, 5) ?> <span style="font-weight:bold;"> &nbsp;|&nbsp; <?php if ($rows->created_by == "0") {
+                     <option value=" <?php echo $rows->id ?> "> <?php echo substr($rows->start_date, 0, 16) . " to " . substr($rows->end_date, 11, 5) ?> <span style="font-weight:bold;"> &nbsp;|&nbsp; <?php if ($rows->created_by == "1") {
                                                                                                                                                                                                             echo "Admin";
                                                                                                                                                                                                          }
-                                                                                                                                                                                                         if ($rows->created_by == "1") {
+                                                                                                                                                                                                         if ($rows->created_by == "2") {
                                                                                                                                                                                                             echo "Interviewer 1";
                                                                                                                                                                                                          }
-                                                                                                                                                                                                         if ($rows->created_by == "2") {
+                                                                                                                                                                                                         if ($rows->created_by == "3") {
                                                                                                                                                                                                             echo "Interviewer 2";
                                                                                                                                                                                                          } ?></span></option>
                   <?php }
