@@ -48,6 +48,7 @@ $(document).ready(function() {
         action_by: action_by
       },
       success: function(response) {
+        console.log(response);
         window.location.replace("dashboard.php");
       }
     });

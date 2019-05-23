@@ -136,7 +136,7 @@ if ($_SESSION['position'] == 'admin') {
        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
      <div class="card-header"><h4>Accepted Candidates</h4></div>
      <div class="card-body">
-       <h1 class="btn btn-lg btn-warning">' . $count_accept . '</h1>
+       <h1 >' . $count_accept . '</h1>
        
      </div>
    </div>
@@ -145,7 +145,7 @@ if ($_SESSION['position'] == 'admin') {
        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
      <div class="card-header"><h4>Rejected Candidates</h4></div>
      <div class="card-body">
-       <h1 class="btn btn-lg btn-warning">' . $count_reject . '</h1>
+       <h1>' . $count_reject . '</h1>
        
      </div>
    </div>
@@ -154,7 +154,7 @@ if ($_SESSION['position'] == 'admin') {
        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
      <div class="card-header"><h4>Selected Candidates</h4></div>
      <div class="card-body">
-       <h1 class="btn btn-lg btn-warning">' . $count_select . '</h1>
+       <h1 >' . $count_select . '</h1>
       
      </div>
    </div>
