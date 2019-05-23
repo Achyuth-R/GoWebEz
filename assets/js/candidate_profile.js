@@ -6,19 +6,21 @@ $(document).ready(function() {
   }
 
   if ($("#statusFlags").attr("data-status") == "Accepted") {
-    $("#acceptButton").removeClass("btn-outline-success");
-    $("#acceptButton").addClass("btn-success");
+    $("#acceptButton").removeClass("btn-outline-primary");
+    $("#acceptButton").addClass("btn-primary");
     $("#rejectButton").addClass("disabled");
+  }
+  if ($("#statusFlags").attr("data-status") == "Selected") {
+    $("#statusFlags").hide();
+    $("#selected").show();
   }
 
   $("#acceptButton").on("click", function() {
     var accept_id = $(this).attr("data-id");
-
     $.ajax({
       url: "accept_act.php",
       type: "POST",
       data: { accept_id: accept_id },
-
       success: function(response) {
         $("#result").html(response);
       }
@@ -33,14 +35,20 @@ $(document).ready(function() {
     }
 
     // Reject AJAX
+    var action_by = $.cookie("userID");
+    console.log(action_by);
     var reject_id = $(this).attr("data-id");
     var reason = $("#rejectDescription").val();
     $.ajax({
       url: "reject_act.php",
       type: "POST",
-      data: { reject_id: reject_id, reject_reason: reason },
+      data: {
+        reject_id: reject_id,
+        reject_reason: reason,
+        action_by: action_by
+      },
       success: function(response) {
-        $("#result").html(response);
+        window.location.replace("dashboard.php");
       }
     });
 
@@ -64,8 +72,8 @@ $(document).ready(function() {
 
   // Accepted button CSS change
   $("#acceptButton").click(function() {
-    $(this).removeClass("btn-outline-success");
-    $(this).addClass("btn-success");
+    $(this).removeClass("btn-outline-primary");
+    $(this).addClass("btn-primary");
     $("#rejectButton").addClass("disabled");
   });
   // ===========================================================================================
@@ -95,6 +103,7 @@ $(document).ready(function() {
   // ===============================
   $(".pdfajax").click(function() {
     var resumeURL = $(this).attr("data-resume");
+    console.log(resumeURL);
     window.open(resumeURL);
   });
 
@@ -105,8 +114,8 @@ $(document).ready(function() {
   }
 
   if ($("#statusFlags").attr("data-status") == "Accepted") {
-    $("#acceptButton").removeClass("btn-outline-success");
-    $("#acceptButton").addClass("btn-success");
+    $("#acceptButton").removeClass("btn-outline-primary");
+    $("#acceptButton").addClass("btn-primary");
     $("#rejectButton").attr("disabled", true);
   }
 
@@ -117,7 +126,6 @@ $(document).ready(function() {
       url: "accept_act.php",
       type: "POST",
       data: { accept_id: accept_id },
-
       success: function(response) {
         $("#result").html(response);
       }
@@ -125,8 +133,6 @@ $(document).ready(function() {
   });
 
   $("#reject-btn").on("click", function() {
-    // alert('hiii');
-
     // Validation
     if ($("#rejectDescription").val() == "") {
       alert("Please provide a valid reason!");

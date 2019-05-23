@@ -40,20 +40,43 @@ require_once 'includes/header-inc.php';
     var title = $("#comment").val();
     var start = $('#comment').data('dataStart');
     var end = $('#comment').data('dataEnd');
-    $.ajax({
-      url: "insert.php",
-      type: "POST",
-      data: {
-        title: title,
-        start: start,
-        end: end,
-      },
-      success: function() {
-        $("#scheduleModal").modal("hide");
-        $("#calendar").fullCalendar('refetchEvents');
-        toastr.success("Event created!");
-      }
-    })
+    var id = $('#comment').data('dataID');
+    var uID = $.cookie("userID").toString();
+    if (id) {
+      $.ajax({
+        url: "update.php",
+        type: "POST",
+        data: {
+          title: title,
+          start: start,
+          end: end,
+          id: id,
+          uID: uID
+        },
+        success: function() {
+          $("#scheduleModal").modal("hide");
+          $("#calendar").fullCalendar('refetchEvents');
+          toastr.info("Event updated!");
+        }
+      });
+    } else {
+      var uID = $.cookie("userID").toString();
+      $.ajax({
+        url: "insert.php",
+        type: "POST",
+        data: {
+          title: title,
+          start: start,
+          end: end,
+          uID: uID
+        },
+        success: function() {
+          $("#scheduleModal").modal("hide");
+          $("#calendar").fullCalendar('refetchEvents');
+          toastr.success("Event created!");
+        }
+      });
+    }
   });
 
   $(document).ready(function() {
@@ -71,12 +94,16 @@ require_once 'includes/header-inc.php';
         default: '01.00'
       },
       select: function(start) {
+        $('#comment').val('');
         $("#scheduleModal").modal("show");
         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
         $('#comment').data('dataStart', start);
+        $('#comment').removeData('dataID');
+        $('#comment').removeData('dataEnd');
       },
       editable: true,
       eventResize: function(event) {
+        var uID = $.cookie("userID").toString();
         var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
         var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
         var title = event.title;
@@ -88,7 +115,8 @@ require_once 'includes/header-inc.php';
             title: title,
             start: start,
             end: end,
-            id: id
+            id: id,
+            uID: uID
           },
           success: function() {
             calendar.fullCalendar('refetchEvents');
@@ -96,31 +124,47 @@ require_once 'includes/header-inc.php';
           }
         })
       },
-
       eventDrop: function(event) {
+        var uID = $.cookie("userID").toString();
         var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
         var title = event.title;
         var id = event.id;
+        if (event.end) {
+          var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+        } else {
+          var end = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+        }
         $.ajax({
           url: "update.php",
           type: "POST",
           data: {
             title: title,
             start: start,
-            id: id
+            end: end,
+            id: id,
+            uID: uID
           },
-          success: function() {
+          success: function(data) {
+            console.log(data);
             calendar.fullCalendar('refetchEvents');
             toastr.info("Event upadted!");
           }
-        })
+        });
       },
 
       eventClick: function(event) {
         $("#scheduleModal").modal("show");
         var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+        if (event.end) {
+          var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+        } else {
+          var end = start;
+        }
         var id = event.id;
         $('#comment').data('dataID', id);
+        $('#comment').data('dataEnd', end);
+        $('#comment').data('dataStart', start);
+        $('#comment').val(event.title);
       },
     });
   });

@@ -8,6 +8,10 @@
   }
   $username = $_SESSION['username'];
   $user_id = $_SESSION['user_id'];
+  $select_session_user = "SELECT * FROM login WHERE email = '" . $_SESSION['email'] . "' ";
+  $result = $db->query($select_session_user);
+  $row = $result->fetch(PDO::FETCH_OBJ);
+  $position = $row->position;
   ?>
  <!-- <!DOCTYPE html> -->
  <html>
@@ -26,7 +30,7 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -48,7 +52,7 @@
 
 
    <header class="site-header">
-     <nav class="navbar navbar-expand-lg">
+     <nav class="navbar default-cursor navbar-expand-lg">
        <a class="navbar-brand logo" href="">
          <center><img src="assets/images/gowebezlogo.png" class="img-fluid show_img" alt="company-logo"></center>
          <center><img src="assets/images/index.png" class="img-fluid hide_img" alt="company-logo"></center>
@@ -70,13 +74,13 @@
          <?php
           if ($_SESSION['position'] == 'admin') {
             ?>
-           <li class="mr-3 "><a id="notification-bell" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left">
+           <li class="mr-3 "><a id="notification-bell" class="btn btn-default pointer-cursor" data-container="body" data-toggle="popover" data-placement="left">
                <span class="fa-xs fa-stack"><i class="fas fa-xs fa-bell fa-stack-2x"></i><span id="notificationCount" class="fa-stack-1x fa-sm fa-inverse"></span></span>
              </a></li>
          <?php
         }
         ?>
-         <li class="mr-3 "><a id="chat" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom">
+         <li class="mr-3 "><a id="chat" class="btn btn-default pointer-cursor" data-container="body" data-toggle="popover" data-placement="bottom">
              <span class="fa-xs fa-stack"><i style="color: #003170" class="fas fa-xs fa-comment fa-stack-2x"></i><span id="chatCount" class="fa-stack-1x fa-sm fa-inverse"></span></span>
            </a></li>
 
@@ -89,8 +93,8 @@
              </span></div>
          </li>
          <div id="profile-content">
-           <div class="profile-body-content text-center ">
-             <h6 class="text-uppercase"><?php echo $username; ?></h6>
+           <div class="profile-body-content text-center">
+             <h6 class="text-uppercase default-cursor"><?php echo $username; ?></h6>
              <a href="logout.php" type="button" class="btn btn-danger text-center text-white">Logout</a>
            </div>
 
@@ -101,19 +105,19 @@
      </nav>
 
      <div id="notification-content">
-       <p class="text-danger text-center notif-header">New Applicants</p>
+       <p class="text-danger text-center default-cursor notif-header">New Applicants</p>
        <div class="dropdown-divider"></div>
        <div class="innerbody">
-         <div id="applicants">
+         <div id="applicants" class="pointer-cursor">
          </div>
        </div>
      </div>
 
      <div id="chat-content">
-       <p class="text-danger text-center notif-header">Interview Schedule</p>
+       <p class="text-danger text-center default-cursor notif-header">Interview Schedule</p>
        <div class="dropdown-divider"></div>
        <div class="innerbody">
-         <div id="chats">
+         <div id="chats" class="pointer-cursor">
          </div>
        </div>
      </div>

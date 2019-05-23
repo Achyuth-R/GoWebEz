@@ -6,6 +6,12 @@
   height: 150px;
   box-shadow: 2px 2px 10px lightgrey;
 }
+.default-cursor {
+  cursor: default;
+}
+.pointer-cursor {
+  cursor: pointer;
+}
 
 #page-content {
   padding-top: 80px;

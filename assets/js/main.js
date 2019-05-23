@@ -19,6 +19,31 @@ $(document).ready(function() {
     $("#border5").css({ background: "#65bd77" });
   }
 
+  $(".tablelSectionTdUl").click(function(e) {
+    e.stopPropagation();
+  });
+
+  $("#candidate_list tr").on("click", function() {
+    $(this)
+      .parent()
+      .parent()
+      .hide();
+
+    var id = $(this).attr("data-id");
+    $.ajax({
+      url: "candidate_profile.php",
+      type: "POST",
+      data: {
+        id: id
+      },
+
+      success: function(response) {
+        $("#result").html(response);
+        alert(data);
+      }
+    });
+  });
+
   $("*").on("click", function(e) {
     $('[data-toggle="popover"]').each(function() {
       if (!$(this).is(e.target) && $(this).has(e.target).length === 0) {
@@ -177,39 +202,79 @@ $(function() {
 });
 
 function chatsFetch() {
-  console.log("d");
+  var ck = $.cookie("userID");
+  var uID = ck.toString();
   $.ajax({
     url: "getChats.php",
+    type: "POST",
+    data: { uID: uID },
     cache: "false",
     success: function(json) {
-      var count = json.unreadcount;
-      document.getElementById("chatCount").innerHTML = count;
+      var unreadCount = json.unreadCount;
+      var chatCount = json.chatCount;
+      document.getElementById("chatCount").innerHTML = unreadCount;
       var ch = document.getElementById("chats");
       $("#chats").empty();
-      if (count == 0) {
+      if (chatCount == 0) {
         ch.innerHTML = "No new interview sessions";
-      }
-      console.log(json);
-      for (var i = 0; i < count; i++) {
-        var title = document.createElement("div");
-        var time = document.createElement("div");
-        var divider = document.createElement("div");
-        divider.className = "dropdown-divider";
-        title.className = "text-secondary";
-        time.className = "text-primary";
-        title.innerHTML = json.chats[i].title;
-        time.innerHTML = json.chats[i].start_date.substring(0, 10);
-        var chatDiv = document.createElement("div");
-        chatDiv.appendChild(time);
-        chatDiv.appendChild(title);
-        chatDiv.appendChild(divider);
-        ch.appendChild(chatDiv);
+      } else {
+        for (var i = 0; i < chatCount; i++) {
+          if (json.chats[i].created_by != uID) {
+            chatCreator(json.chats[i], ch);
+          }
+        }
       }
     }
   });
 }
 
 setInterval(chatsFetch, 1000);
+
+function chatCreator(json, ch) {
+  var title = document.createElement("div");
+  var time = document.createElement("div");
+  var start = document.createElement("div");
+  var end = document.createElement("div");
+  var divider = document.createElement("div");
+  var start = document.createElement("div");
+  divider.className = "dropdown-divider";
+  title.className = "text-secondary";
+  time.className = "text-primary";
+  start.className = "text-success";
+  end.className = "text-danger";
+  title.innerHTML = json.title;
+  time.innerHTML = json.start_date.substring(0, 10);
+  start.innerHTML = "End   : " + json.start_date.substring(11, 16);
+  end.innerHTML = "Start : " + json.end_date.substring(11, 16);
+  var chatDiv = document.createElement("div");
+  chatDiv.appendChild(time);
+  chatDiv.appendChild(start);
+  chatDiv.appendChild(end);
+  chatDiv.appendChild(title);
+  chatDiv.appendChild(divider);
+  chatDiv.setAttribute("data-id", json.id);
+  ch.appendChild(chatDiv);
+}
+
+$("#chat").click(function() {
+  // var obj = [];
+  var ck = $.cookie("userID");
+  var uID = ck.toString();
+  var childNum = document.getElementById("chats").children.length;
+  var children = document.getElementById("chats").children;
+  var eventID = "";
+  for (var i = 0; i < childNum; i++) {
+    eventID += children[i].getAttribute("data-id") + ",";
+  }
+  $.ajax({
+    url: "setChats.php",
+    type: "POST",
+    data: { uID: uID, eventID: eventID },
+    success: function(data) {
+      console.log(data);
+    }
+  });
+});
 
 //===================================================================================
 
@@ -246,45 +311,4 @@ $(document).ready(function() {
 
 // Accepted candidate Mailing AJAX
 
-$(document).ready(function() {
-  $(".email_button").click(function() {
-    $(this).attr("disabled", "disabled");
-    $(this).css("opacity", ".1");
-    var id = $(this).attr("id");
-    // alert(id);
-    var action = $(this).data("action");
-    // alert(action);
-    // var  email=$(this).data("email");op
-    // alert(email);
-    var email_data = [];
-
-    if (action == "email_single") {
-      email_data.push({
-        email: $(this).data("email")
-      });
-    } else {
-      $(".checkbox-child").each(function() {
-        var ischecked = $(this).is(":checked");
-        if ($(this).is(":checked")) {
-          // alert('hiiii');
-          email_data.push({
-            email: $(this).data("email")
-          });
-        }
-      });
-    }
-
-    $.ajax({
-      url: "send_mail.php",
-      method: "POST",
-      data: {
-        email_data: email_data
-      },
-
-      success: function(data) {
-        return data;
-      }
-    });
-  });
-});
 //===================================================================================

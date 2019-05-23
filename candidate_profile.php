@@ -2,10 +2,9 @@
 require_once 'init.php';
 
 $id = $_POST['id'];
-$select_candidate_list = "SELECT * FROM registered_user WHERE id=$id";
+$select_candidate_list = "SELECT * FROM registered_user WHERE id=" . $id;
 $select_candidate_list = $db->query($select_candidate_list);
 $rows = $select_candidate_list->fetch(PDO::FETCH_OBJ);
-// print_r($rows)
 
 if ($rows->fresher_or_experienced == "Fresher") {
    $color = "warning";
@@ -25,7 +24,6 @@ if ($rows->fresher_or_experienced == "Fresher") {
       <div class="col-md-4 bordered pt-3">
          <div class="profileDetails">
             <div class="profileDetailsImage text-center">
-               <!-- <div class="roll"><i class="fas fa-tag"></i><span>F</span></div> -->
                <img class="img-fluid" src="assets/images/img1.jpg">
                <h6 class="font-weight-bold pt-3"><?php echo $rows->name; ?></h6>
 
@@ -53,18 +51,17 @@ if ($rows->fresher_or_experienced == "Fresher") {
                         <td class="pl-3"><?php echo $rows->residence; ?></td>
                      </tr>
                      <tr>
-                        <td colspan="2" class="text-center pt-4"><button data-resume="<?php echo $rows->fileName ?>" type="button" class="btn btn-primary font-weight-bold pdfajax">View Resume</button>
+                        <td colspan="2" class="text-center pt-4"><button data-resume="<?php echo $rows->resume_upload ?>" type="button" class="btn btn-info font-weight-bold pdfajax">View Resume</button>
                         </td>
                      </tr>
                   </tbody>
                </table>
             </div>
             <div id="statusFlags" class="selection text-center py-1" data-status=<?php echo $rows->del_flag ?>>
-               <button id="acceptButton" class="btn btn-outline-success mr-3 text-md-center" name="b1" data-id="<?php echo $rows->id ?>"> Accept</button>
-               <button id="rejectButton" class="btn btn-outline-danger" name="b1" data-toggle="modal" data-target="#rejectModal" data-id="<?php echo $rows->id ?>"> Reject</button>
-               <!-- <img class="accept" src="assets/images/1.png">
-               <img class="reject" src="assets/images/2.png"> -->
+               <button id="acceptButton" class="btn btn-outline-primary mr-3 text-md-center" name="b1" data-id="<?php echo $rows->id ?>">Accept</button>
+               <button id="rejectButton" class="btn btn-outline-danger" name="b1" data-toggle="modal" data-target="#rejectModal" data-id="<?php echo $rows->id ?>">Reject</button><br><br>
             </div>
+            <div id="selected" style="display:none;"><button class="btn btn-success btn-large">Selected</button></div>
          </div>
       </div>
       <div class="col-md-8 profileApplication">
@@ -185,7 +182,7 @@ if ($rows->fresher_or_experienced == "Fresher") {
             </div>
          </div>
       </div>
-   </div>s
+   </div>
 
 </section>
 
@@ -193,4 +190,4 @@ if ($rows->fresher_or_experienced == "Fresher") {
 
 
 <!-- ============================ profile details end ============================== -->
-<!-- =========================================================================== -->
+<!-- =============================================================================== -->
