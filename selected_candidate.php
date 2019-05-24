@@ -25,9 +25,11 @@ require_once 'includes/header-inc.php';
 					<th class="text-muted">
 						<i class="fas fa-calendar mr-1" aria-hidden="true"></i> Date of Application
 					</th>
-					<th class="text-muted">
-						<i class="fas fa-envelope mr-1" aria-hidden="true"></i> Send Mail
-					</th>
+					<?php if ($position == "admin") { ?>
+						<th class="text-muted">
+							<i class="fas fa-envelope mr-1" aria-hidden="true"></i> Send Mail
+						</th>
+					<?php } ?>
 					<th class="text-muted">
 						<i class="fas fa-users mr-1" aria-hidden="true"></i> Selected By
 					</th>
