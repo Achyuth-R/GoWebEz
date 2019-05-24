@@ -231,6 +231,7 @@ function chatsFetch() {
 setInterval(chatsFetch, 1000);
 
 function chatCreator(json, ch) {
+  var by = document.createElement("div");
   var title = document.createElement("div");
   var time = document.createElement("div");
   var start = document.createElement("div");
@@ -243,14 +244,26 @@ function chatCreator(json, ch) {
   start.className = "text-success";
   end.className = "text-danger";
   title.innerHTML = json.title;
+  switch (json.created_by) {
+    case "1":
+      by.innerHTML = "Admin";
+      break;
+    case "2":
+      by.innerHTML = "Interviewer 1";
+      break;
+    case "3":
+      by.innerHTML = "Interviewer 2";
+      break;
+  }
   time.innerHTML = json.start_date.substring(0, 10);
   start.innerHTML = "End   : " + json.start_date.substring(11, 16);
   end.innerHTML = "Start : " + json.end_date.substring(11, 16);
   var chatDiv = document.createElement("div");
+  chatDiv.appendChild(by);
+  chatDiv.appendChild(title);
   chatDiv.appendChild(time);
   chatDiv.appendChild(start);
   chatDiv.appendChild(end);
-  chatDiv.appendChild(title);
   chatDiv.appendChild(divider);
   chatDiv.setAttribute("data-id", json.id);
   ch.appendChild(chatDiv);

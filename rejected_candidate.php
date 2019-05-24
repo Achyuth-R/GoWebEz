@@ -10,7 +10,7 @@ require_once 'includes/header-inc.php';
 
 <section class="container">
    <div class="table-responsive">
-      <table class="table table-striped table-hover rejectBox">
+      <table class="table table-hover rejectBox">
          <thead class="text-left default-cursor ">
             <tr>
                <th class="text-muted rejectBoxCheckAll">
@@ -23,7 +23,7 @@ require_once 'includes/header-inc.php';
                   Designation<i class="fa fa-status mr-2 mr-2"></i>
                </th>
                <th class="text-muted"><i class="fas fa-comments mr-1"></i>Comment</th>
-               <th class="text-muted"><i class="fas fa-users mr-1"></i>User</th>
+               <th class="text-muted"><i class="fas fa-users mr-1"></i>Rejected By</th>
             </tr>
          </thead>
 
