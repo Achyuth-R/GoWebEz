@@ -108,12 +108,64 @@ if ($_SESSION['position'] == 'admin') {
    </div>
 <?php
 } else {
-   echo '<div class="alert alert-danger" role="alert">
-   <h4 class="alert-heading">Oops! You are in the wrong page.</h4>
-   <p>Unauthorized Access.</p>
+
+
+   $sql =  $db->prepare('SELECT id FROM registered_user WHERE del_flag = "Rejected" ');
+   $sql->execute();
+   $reject = $sql->fetchAll(PDO::FETCH_OBJ);
+   $count_reject =  count($reject);
+   $sql =  $db->prepare('SELECT id FROM registered_user WHERE del_flag = "Accepted" ');
+   $sql->execute();
+   $accept = $sql->fetchAll(PDO::FETCH_OBJ);
+   $count_accept = count($accept);
+   $sql =  $db->prepare('SELECT id FROM registered_user WHERE del_flag = "Selected" ');
+   $sql->execute();
+   $select = $sql->fetchAll(PDO::FETCH_OBJ);
+   $count_select = count($select);
+   $sql =  $db->prepare('SELECT id FROM registered_user;');
+   $sql->execute();
+   $all = $sql->fetchAll(PDO::FETCH_OBJ);
+   $count_all =  count($all);
+   echo '
+   <h3 class="display-4" style="text-align:center; font-size: 40px;">Total Number of candidates:' . $count_all . '</h3>
    <hr>
-   <p class="mb-0">Please return to Interview Schedule.</p>
- </div>';
+   <div style="top:50%; transform:translate(0,50%);">
+   <center>
+     <div class="row">
+       <div class="col-sm">
+       <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+     <div class="card-header"><h4>Accepted Candidates</h4></div>
+     <div class="card-body">
+       <h1 >' . $count_accept . '</h1>
+       
+     </div>
+   </div>
+   </div>
+   <div class="col-sm">
+       <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+     <div class="card-header"><h4>Rejected Candidates</h4></div>
+     <div class="card-body">
+       <h1>' . $count_reject . '</h1>
+       
+     </div>
+   </div>
+       </div>
+       <div class="col-sm">
+       <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+     <div class="card-header"><h4>Selected Candidates</h4></div>
+     <div class="card-body">
+       <h1 >' . $count_select . '</h1>
+      
+     </div>
+   </div>
+       </div>
+     </div>
+   
+   
+   </center>
+   </div>    
+      
+   ';
 }
 
 ?>

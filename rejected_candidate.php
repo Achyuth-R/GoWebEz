@@ -10,7 +10,7 @@ require_once 'includes/header-inc.php';
 
 <section class="container">
    <div class="table-responsive">
-      <table class="table table-striped table-hover rejectBox">
+      <table class="table table-hover rejectBox">
          <thead class="text-left default-cursor ">
             <tr>
                <th class="text-muted rejectBoxCheckAll">
@@ -23,6 +23,7 @@ require_once 'includes/header-inc.php';
                   Designation<i class="fa fa-status mr-2 mr-2"></i>
                </th>
                <th class="text-muted"><i class="fas fa-comments mr-1"></i>Comment</th>
+               <th class="text-muted"><i class="fas fa-users mr-1"></i>Rejected By</th>
             </tr>
          </thead>
 
@@ -55,6 +56,17 @@ require_once 'includes/header-inc.php';
                   </td>
                   <td class="rejectComment  align-middle">
                      <?php echo $rows->reject_reason ?></td>
+                  <td>
+                     <?php if ($rows->action_by == "1") {
+                        echo "<button class='btn btn-danger btn-block'>Admin</button>";
+                     }
+                     if ($rows->action_by == "2") {
+                        echo "<button class='btn btn-info btn-block'>Interviewer 1</button>";
+                     }
+                     if ($rows->action_by == "3") {
+                        echo "<button class='btn btn-info btn-block'>Interviewer 2</button>";
+                     } ?>
+                  </td>
                </tr>
             </tbody>
          <?php } ?>
