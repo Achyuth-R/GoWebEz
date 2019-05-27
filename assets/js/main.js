@@ -298,7 +298,12 @@ $(document).ready(function() {
     searchValue($(this).val());
   });
 
+  $(".dropdown_filter").on("click",function() {
+    searchValue($(this).val());
+  });
+
   function searchValue(value) {
+    console.log(value);
     $("table tbody tr").each(function() {
       var found = "false";
 
@@ -322,6 +327,13 @@ $(document).ready(function() {
 });
 //===================================================================================
 
+// SEARCH BOX
+
+
+
+
+ 
+//===================================================================================
 // Accepted candidate Mailing AJAX
 
 //===================================================================================
