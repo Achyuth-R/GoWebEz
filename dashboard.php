@@ -13,16 +13,14 @@ if ($_SESSION['position'] == 'admin') {
          <table class="table  tableSectionBox table-hover">
             <thead class="text-left default-cursor">
                <tr>
-                  <th class="text-muted tableSectionBoxCheckAll">
-                     <input class="m-2 checkall" type="checkbox" id="checkall">
-                  </th>
+
                   <th class="text-muted">
-                     <span><i class="fa fa-user-o ml-2 mr-2" aria-hidden="true"></i> Name</span>
+                     <span><i class="fas fa-user ml-2 mr-2" aria-hidden="true"></i> Name</span>
                   </th>
-                  <th class="text-muted"><i class="fa fa-pen-o mr-1" aria-hidden="true"></i>Designation</th>
-                  <th class="text-muted"><i class="fa fa-envelope-o mr-1" aria-hidden="true"></i> E-mail</th>
-                  <th class="text-muted"><i class="fa fa-calendar mr-1" aria-hidden="true"></i> Date of Application</th>
-                  <th class="text-muted"><i class="fa fa-line-chart mr-1" aria-hidden="true"></i> Status</th>
+                  <th class="text-muted"><i class="fas fa-pen mr-1" aria-hidden="true"></i>Designation</th>
+                  <th class="text-muted"><i class="fas fa-envelope mr-1" aria-hidden="true"></i> E-mail</th>
+                  <th class="text-muted"><i class="fas fa-calendar mr-1" aria-hidden="true"></i> Date of Application</th>
+                  <th class="text-muted"><i class="fas fa-line-chart mr-1" aria-hidden="true"></i> Status</th>
                </tr>
             </thead>
             <tbody class="text-left" id="candidate_list">
@@ -49,9 +47,7 @@ if ($_SESSION['position'] == 'admin') {
                   ?>
                   <tr class="<?php echo $status_class ?>" data-id="<?php echo $rows->id ?>">
                      <input type="hidden" class="candidate_id" name="id" value="<?php echo $rows->id ?>">
-                     <td class="tablelSectionTdUl align-middle p-0">
-                        <input class="mx-3 align-middle checkbox-child" type="checkbox">
-                     </td>
+
                      <td class="align-middle">
 
                         <img class="rounded-circle img-fluid mr-3 tableprofileImg float-left" src="assets/images/img1.jpg">
