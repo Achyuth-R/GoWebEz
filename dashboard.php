@@ -22,7 +22,20 @@ if ($_SESSION['position'] == 'admin') {
                   <th class="text-muted"><i class="fa fa-pen-o mr-1" aria-hidden="true"></i>Designation</th>
                   <th class="text-muted"><i class="fa fa-envelope-o mr-1" aria-hidden="true"></i> E-mail</th>
                   <th class="text-muted"><i class="fa fa-calendar mr-1" aria-hidden="true"></i> Date of Application</th>
-                  <th class="text-muted"><i class="fa fa-line-chart mr-1" aria-hidden="true"></i> Status</th>
+                  <th class="text-muted"><i class="fa fa-line-chart mr-1" aria-hidden="true"></i>
+                  <div class="btn-group">
+  <button class="select" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:grey;">
+    <b>Status<b><i class="fa fa-caret-down" aria-hidden="true"></i>
+  </button>
+  <div class="dropdown-menu">
+  <a class="dropdown-item" href="#">All</a>
+  <a class="dropdown-item" href="#">Accepted</a>
+  <a class="dropdown-item" href="#">Selected</a>
+  <a class="dropdown-item" href="#">Rejected</a>
+  
+  </div>
+</div>
+                   </th>
                </tr>
             </thead>
             <tbody class="text-left" id="candidate_list">
@@ -102,8 +115,15 @@ if ($_SESSION['position'] == 'admin') {
          </table>
       </div>
    </section>
+   <style>
+   .select {
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    background: none;
+}
 
-
+</style>
 
    </div>
 <?php
