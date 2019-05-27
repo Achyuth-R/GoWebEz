@@ -20,7 +20,7 @@ require_once 'includes/header-inc.php';
                   <span class="text-muted"><i class="fas fa-user mr-2 mr-2"></i> Name</span>
                </th>
                <th class="text-muted">
-                  Designation<i class="fa fa-status mr-2 mr-2"></i>
+                  <i class="fas fa-pen mr-1" aria-hidden="true"></i>Designation
                </th>
                <th class="text-muted"><i class="fas fa-comments mr-1"></i>Comment</th>
                <th class="text-muted"><i class="fas fa-users mr-1"></i>Rejected By</th>
