@@ -7,11 +7,11 @@ $reject_reason = $_POST['reject_reason'];
 
 $update_reject = "UPDATE registered_user 
 		  SET del_flag = 'Rejected', reject_reason = '";
-$update_reject = $update_reject . $reject_reason . "' WHERE id=" . $reject_id;
+$update_reject = $update_reject . $reject_reason . "', action_by = " . $_POST["action_by"] . " WHERE id=" . $reject_id;
 $update = $db->prepare($update_reject);
 $update->execute();
 if ($update) {
-	echo "Rejected";
+	echo $_POST["action_by"];
 }
 
 ?>

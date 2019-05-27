@@ -17,6 +17,10 @@ $(".select").click(function(s) {
 $(".reject_button").click(function() {
   var id = $("#rejectDescription").data("id");
   var reason = $("#rejectDescription").val();
+  if (reason == "") {
+    alert("Please provide a valid reason.");
+    return false;
+  }
   var action_by = $.cookie("userID");
   $.ajax({
     type: "POST",

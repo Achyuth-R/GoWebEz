@@ -2,7 +2,12 @@
 require_once 'init.php';
 require_once 'includes/header-inc.php';
 ?>
-
+<style>
+.fc-today {
+    background: #fb6b5b !important;
+    opacity: 0.4;
+}
+</style>
 <h2 align="center"><a href="#"></a></h2>
 <br />
 <div class="container" style="overflow:scroll;width:80%;
@@ -94,12 +99,19 @@ require_once 'includes/header-inc.php';
         default: '01.00'
       },
       select: function(start) {
-        $('#comment').val('');
-        $("#scheduleModal").modal("show");
-        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-        $('#comment').data('dataStart', start);
-        $('#comment').removeData('dataID');
-        $('#comment').removeData('dataEnd');
+
+        if (start.isBefore(moment().startOf('day'))) {
+              $('#calendar').fullCalendar('unselect');
+              return false;
+            }
+            else {
+              $('#comment').val('');
+              $("#scheduleModal").modal("show");
+              var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+              $('#comment').data('dataStart', start);
+              $('#comment').removeData('dataID');
+              $('#comment').removeData('dataEnd');
+            } 
       },
       editable: true,
       eventResize: function(event) {

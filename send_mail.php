@@ -14,7 +14,7 @@ if (isset($_POST['email_data'])) {
 
     for ($i = 0; $i < $count; $i++) {
         $email_to = $email_data[$i]["email"];
-        $subject = 'Re : Interview with GoWebEz - Human Resource @ GoWebEz';
+        $subject = 'Re : Interview swith GoWebEz - Human Resource @ GoWebEz';
         $message = 'Dear ' . $email_data[$i]["name"] . ", \n\nYou have been selected for an interview with GoWebEz!\n\nDate : " . substr($startdate, 0, 10) . "\nTIMINGS (24-hour Format)\n\tFrom : " . substr($startdate, 11, 15) . "\n\tTo     : " . substr($enddate, 11, 15) . "\n\n\nKindly be present in time with your updated resume and relevant documents.\n\nRegards,\nTeam GoWebEz.";
         $headers = 'From:aravindansridhars@gmail.com';
         $retval = mail($email_to, $subject, $message, $headers);
