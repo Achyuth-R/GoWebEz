@@ -31,10 +31,10 @@ if ($_SESSION['position'] == 'admin') {
   </button>
   <div class="dropdown-menu">
   <option class="dropdown-item dropdown_filter" value="" href="#">All</option>
+  <option class="dropdown-item dropdown_filter" value="~" href="#">Status Pending</option>
   <option class="dropdown-item dropdown_filter" value="Accepted" href="#">Accepted</option>
   <option class="dropdown-item dropdown_filter" value="Selected" href="#">Selected</option>
   <option class="dropdown-item dropdown_filter" value="Rejected" href="#">Rejected</option>
-  <option class="dropdown-item dropdown_filter" value="~" href="#">Status Pending</option>
   
   </div>
 </div>
