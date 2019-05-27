@@ -2,7 +2,12 @@
 require_once 'init.php';
 require_once 'includes/header-inc.php';
 ?>
-
+<style>
+.fc-today {
+    background: #fb6b5b !important;
+    opacity: 0.4;
+}
+</style>
 <h2 align="center"><a href="#"></a></h2>
 <br />
 <div class="container" style="overflow:scroll;width:80%;
