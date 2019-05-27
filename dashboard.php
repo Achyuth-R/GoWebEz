@@ -34,6 +34,7 @@ if ($_SESSION['position'] == 'admin') {
   <option class="dropdown-item dropdown_filter" value="Accepted" href="#">Accepted</option>
   <option class="dropdown-item dropdown_filter" value="Selected" href="#">Selected</option>
   <option class="dropdown-item dropdown_filter" value="Rejected" href="#">Rejected</option>
+  <option class="dropdown-item dropdown_filter" value="~" href="#">Status Pending</option>
   
   </div>
 </div>
@@ -93,7 +94,7 @@ if ($_SESSION['position'] == 'admin') {
 
                         if ($rows->del_flag == 'D') {
 
-                           echo '<div class="spinner-grow text-success table-spinner ml-2 "></div>
+                           echo '<div class="spinner-grow text-success table-spinner ml-2 ">~</div>
                         <div class="spinner-grow text-info table-spinner"></div>
                         <div class="spinner-grow text-warning table-spinner"></div>
                         <div class="spinner-grow text-danger table-spinner"></div>
