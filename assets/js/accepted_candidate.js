@@ -48,12 +48,10 @@ $(document).ready(function() {
       alert("Please select a valid interview slot!");
       return false;
     }
-    $(this).attr("disabled", "disabled");
-    $(this).css("opacity", ".1");
-    var id = $(this).attr("id");
+    var clicked = this;
     var action = $(this).data("action");
     var email_data = [];
-
+    var count = 0;
     if (action == "email_single") {
       email_data.push({
         email: $(this).data("email"),
@@ -68,9 +66,15 @@ $(document).ready(function() {
             name: $(this).data("name"),
             eventID: $("#eventID").val()
           });
+          count++;
         }
       });
+      if (count == 0) {
+        alert("No candidates selected!\n\nSelect atleast one.");
+        return false;
+      }
     }
+
     $.ajax({
       url: "send_mail.php",
       method: "POST",
@@ -79,6 +83,8 @@ $(document).ready(function() {
       },
       success: function(data) {
         console.log(data);
+        $(clicked).attr("disabled", "disabled");
+        $(clicked).css("opacity", ".1");
       }
     });
   });
