@@ -22,7 +22,28 @@ if ($_SESSION['position'] == 'admin') {
                   <th class="text-muted"><i class="fa fa-pen-o mr-1" aria-hidden="true"></i>Designation</th>
                   <th class="text-muted"><i class="fa fa-envelope-o mr-1" aria-hidden="true"></i> E-mail</th>
                   <th class="text-muted"><i class="fa fa-calendar mr-1" aria-hidden="true"></i> Date of Application</th>
-                  <th class="text-muted"><i class="fa fa-line-chart mr-1" aria-hidden="true"></i> Status</th>
+                  <form class="form" id="filter">   
+                  <th class="text-muted"><i class="fa fa-line-chart mr-1" aria-hidden="true"></i>
+                              
+
+  <button class="select btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:grey;">
+    <b>Status<b><i class="fa fa-caret-down" aria-hidden="true"></i>
+  </button>
+  <div class="dropdown-menu">
+  <option class="dropdown-item dropdown_filter" value="" href="#">All</option>
+  <option class="dropdown-item dropdown_filter" value="Accepted" href="#">Accepted</option>
+  <option class="dropdown-item dropdown_filter" value="Selected" href="#">Selected</option>
+  <option class="dropdown-item dropdown_filter" value="Rejected" href="#">Rejected</option>
+  
+  </div>
+</div>
+</form>
+
+
+
+
+
+
                </tr>
             </thead>
             <tbody class="text-left" id="candidate_list">
