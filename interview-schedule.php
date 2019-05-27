@@ -95,7 +95,7 @@ require_once 'includes/header-inc.php';
       },
       select: function(start) {
 
-        if (start.isBefore(moment())) {
+        if (start.isBefore(moment().startOf('day'))) {
               $('#calendar').fullCalendar('unselect');
               return false;
             }
