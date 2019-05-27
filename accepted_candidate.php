@@ -15,7 +15,7 @@ require_once 'includes/header-inc.php';
                <input class="m-2 checkall" type="checkbox">
             </th>
             <th class="acceptedBoxName">
-               <span class="text-muted"><i class="fas fa-user mr-2 mr-2"></i> Name</span>
+               <span class="text-muted"><i class="fas fa-user mr-2 mr-2"></i>Name</span>
             </th>
             <th class="text-muted">
                <i class="fas fa-pen mr-1" aria-hidden="true"></i>Designation
