@@ -75,7 +75,7 @@ require_once 'includes/header-inc.php';
 							11/02/2019
 						</td>
 						<?php if ($position == 'admin') { ?>
-							<td class="align-middle"><button type="button" name="email_button" class="btn btn-primary email_button email_single" data-email="<?php echo $rows->email ?>" data-name="<?php echo $rows->name ?>" data-action="email_single">
+							<td class="align-middle"><button type="button" name="email_button" class="btn btn-primary email_button email_single" data-email="<?php echo $rows->email ?>" data-name="<?php echo $rows->name ?>" data-action="email_single" <?php if ($rows->selected_mail_flag == "1") echo 'disabled="true"' ?>>
 									<i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-warning"><?php if ($rows->selected_mail_flag == "1") {
 																												echo "Mail Sent";
 																											} ?></span></button></td>

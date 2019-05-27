@@ -1,8 +1,8 @@
 $(".email_button").click(function() {
-  $(this).attr("disabled", "disabled");
-  $(this).css("opacity", ".1");
   var action = $(this).data("action");
   var email_data = [];
+  var count = 0;
+  var clicked = this;
   if (action == "email_single") {
     email_data.push({
       email: $(this).data("email"),
@@ -15,8 +15,13 @@ $(".email_button").click(function() {
           email: $(this).data("email"),
           name: $(this).data("name")
         });
+        count++;
       }
     });
+    if (count == 0) {
+      alert("No candidates selected!\n\nSelect atleast one.");
+      return false;
+    }
   }
 
   $.ajax({
@@ -27,6 +32,8 @@ $(".email_button").click(function() {
     },
     success: function(data) {
       console.log(data);
+      $(clicked).attr("disabled", "disabled");
+      $(clicked).css("opacity", ".1");
     }
   });
 });
