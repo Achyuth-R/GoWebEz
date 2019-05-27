@@ -17,6 +17,7 @@ if ($_SESSION['position'] == 'admin') {
                   <th class="text-muted">
                      <span><i class="fas fa-user ml-2 mr-2" aria-hidden="true"></i> Name</span>
                   </th>
+
                   <th class="text-muted"><i class="fas fa-pen mr-1" aria-hidden="true"></i>Designation</th>
                   <th class="text-muted"><i class="fas fa-envelope mr-1" aria-hidden="true"></i> E-mail</th>
                   <th class="text-muted"><i class="fas fa-calendar mr-1" aria-hidden="true"></i> Date of Application</th>
@@ -98,8 +99,15 @@ if ($_SESSION['position'] == 'admin') {
          </table>
       </div>
    </section>
+   <style>
+   .select {
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    background: none;
+}
 
-
+</style>
 
    </div>
 <?php
