@@ -3,15 +3,15 @@ require_once 'init.php';
 require_once 'includes/header-inc.php';
 ?>
 <style>
-.fc-today {
+  .fc-today {
     background: #fb6b5b !important;
     opacity: 0.4;
-}
+  }
 </style>
 <h2 align="center"><a href="#"></a></h2>
 <br />
 <div class="container" style="overflow:scroll;width:80%;
-  height:500px;">
+  height:690px;">
   <div id="calendar"></div>
 </div>
 
@@ -87,6 +87,7 @@ require_once 'includes/header-inc.php';
   $(document).ready(function() {
     var calendar = $('#calendar').fullCalendar({
       editable: true,
+      height: 650,
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -101,17 +102,16 @@ require_once 'includes/header-inc.php';
       select: function(start) {
 
         if (start.isBefore(moment().startOf('day'))) {
-              $('#calendar').fullCalendar('unselect');
-              return false;
-            }
-            else {
-              $('#comment').val('');
-              $("#scheduleModal").modal("show");
-              var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-              $('#comment').data('dataStart', start);
-              $('#comment').removeData('dataID');
-              $('#comment').removeData('dataEnd');
-            } 
+          $('#calendar').fullCalendar('unselect');
+          return false;
+        } else {
+          $('#comment').val('');
+          $("#scheduleModal").modal("show");
+          var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+          $('#comment').data('dataStart', start);
+          $('#comment').removeData('dataID');
+          $('#comment').removeData('dataEnd');
+        }
       },
       editable: true,
       eventResize: function(event) {
